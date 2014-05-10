@@ -6,7 +6,6 @@ require 'rails/all'
 # you've limited to :test, :development, or :production.
 Bundler.require(:default, Rails.env)
 
-  config.action_mailer.default_url_options = {:host => "localhost:3000"}
 
 module Imazing
   class Application < Rails::Application
@@ -39,6 +38,8 @@ config.action_mailer.default_url_options = {:host => "localhost:3000"}
 
 =end
   config.action_mailer.default_url_options = {:host => "localhost:3000"}
+
+#  config.middleware.insert_before 0, "SearchSuggestions"
 
   end
 end

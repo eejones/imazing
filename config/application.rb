@@ -39,5 +39,8 @@ config.action_mailer.default_url_options = {:host => "localhost:3000"}
 =end
   config.action_mailer.default_url_options = {:host => "localhost:3000"}
 
+#middleware cuts down over 50% on response time needed for search suggestions
+  config.middleware.insert_before 0, "SearchSuggestions"
+
   end
 end
