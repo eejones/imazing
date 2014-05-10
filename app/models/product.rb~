@@ -17,9 +17,10 @@ class Product < ActiveRecord::Base
 # have to set inheritance column to nil to allow the use of attribute named 'type' with self.inheritance_column = nil
 self.inheritance_column = nil
 
+#should use sphynx instead for full text search
 def self.search(search)
   if search
-    where('modtype_name LIKE ?', "%#{search}%")
+    where('modtype_name LIKE ? or manufacturer_name LIKE ?', "%#{search}%") || where('manufacturer_name LIKE ?', "%#{search}%")
   else
     scoped
   end

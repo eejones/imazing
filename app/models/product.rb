@@ -20,7 +20,7 @@ self.inheritance_column = nil
 #should use sphynx instead for full text search
 def self.search(search)
   if search
-    where('modtype_name LIKE ?', "%#{search}%")
+    where('modtype_name LIKE ?', "%#{search}%") || where('manufacturer_name LIKE ?', "%#{search}%")
   else
     scoped
   end
