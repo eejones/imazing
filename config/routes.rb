@@ -1,4 +1,6 @@
 Imazing::Application.routes.draw do
+  resources :search_suggestions
+
   resources :searches
 
   resources :overallcategories
