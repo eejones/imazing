@@ -11,7 +11,7 @@
 // about supported directives.
 //
 //= require jquery
-//= require jquery-ui
+//= require jquery.ui.all
 //= require jquery_ujs
 //= require jquery.turbolinks
 //= require turbolinks
@@ -24,9 +24,15 @@ $(function() {
     $.getScript(this.href);
       return false;
   });
-  $('#products_search input').keyup(function () {
-    $.get($('#products_search').attr('action'), 
-    $('#products_search').serialize(), null, 'script');
+//removing the real-time search functionality below for #products_search input and replacing it with the products_search submit function below
+//  $('#products_search input').keyup(function () {
+//    $.get($('#products_search').attr('action'), 
+//    $('#products_search').serialize(), null, 'script');
+//    return false;
+//  });
+//adding the products search submit function to have ajax on submit instead of searching in real-time
+  $("products_search").submit(function() {
+    $.get(this.action, $(this.serialize(), null, "script");
     return false;
   });
 });
