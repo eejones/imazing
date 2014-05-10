@@ -1,0 +1,6 @@
+class ReaddOverallcatsToProducts < ActiveRecord::Migration
+  def change
+    add_reference :products, :overallcategory, index:true
+    add_reference :overallcategories, :product, index:true
+  end
+end

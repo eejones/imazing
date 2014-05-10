@@ -1,0 +1,18 @@
+%h1
+  You've received a message from
+  = @message.touser.fname
+  = @message.touser.lname
+= render :partial=> 'products/product_mail', locals: {product: @message.product} 
+//additional info on that partial here:http://api.rubyonrails.org/classes/ActionView/PartialRenderer.html
+%h2= link_to "Product", product_path(@message.product, :only_path => false)
+%p 
+  I'm interested in your product
+%p
+  = @message.fromuser.fname
+  = @message.fromuser.fname
+%p
+  = @message.fromuser.username
+  //I needed to add only_path => false and it fixes any host issues to use the default host
+  = link_to "View User Profile", user_path(@message.fromuser, :only_path => false)
+
+

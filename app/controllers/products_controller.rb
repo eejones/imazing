@@ -1,0 +1,107 @@
+class ProductsController < ApplicationController
+
+  before_action :set_product, only: [:show, :edit, :update, :destroy]
+  before_action :owninguser, only: [:destroy]
+
+  helper_method :sort_column, :sort_direction
+
+  # GET /products
+  # GET /products.json
+  def index
+    @products = Product.search(params[:search]).order(sort_column + " " + sort_direction).paginate(:per_page =>20, :page => params[:page])
+  end
+
+  # GET /products/1
+  # GET /products/1.json
+  def show
+  end
+
+  # GET /products/new
+  def new
+    @product = Product.new
+  end
+
+  # GET /products/1/edit
+  def edit
+  end
+
+  # POST /products
+  # POST /products.json
+  def create
+    @user = User.find_by_id(current_user.id)
+    @product = @user.products.new(product_params)
+    @product.modality_name = @product.modality.name
+    @product.modtype_name = @product.modtype.name
+    @product.manufacturer_name = @product.manufacturer.name
+    @product.overallcategory_name = @product.overallcategory.name
+    respond_to do |format|
+      if @product.save
+        format.html { redirect_to @product, notice: 'Product was successfully created.' }
+        format.json { render action: 'show', status: :created, location: @product }
+      else
+        format.html { render action: 'new' }
+        format.json { render json: @product.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  # PATCH/PUT /products/1
+  # PATCH/PUT /products/1.json
+  def update
+    respond_to do |format|
+      if @product.update(product_params)
+        @product.modality_name = @product.modality.name
+        @product.modtype_name = @product.modtype.name
+        @product.manufacturer_name = @product.manufacturer.name
+        @product.overallcategory_name = @product.overallcategory.name
+        format.html { redirect_to @product, notice: 'Product was successfully updated.' }
+        format.json { head :no_content }
+      else
+        format.html { render action: 'edit' }
+        format.json { render json: @product.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  # DELETE /products/1
+  # DELETE /products/1.json
+  def destroy
+    @product.destroy
+    respond_to do |format|
+      format.html { redirect_to products_url }
+      format.json { head :no_content }
+    end
+  end
+
+  def update_modtypes
+    @modality = Modality.find_by_id(params[:modality_id])
+    respond_to do |format|
+      format.js
+    end
+  end
+
+
+  private
+
+    def sort_column
+      Product.column_names.include?(params[:sort]) ? params[:sort] : "overallcategory_id"
+    end
+
+    def sort_direction
+      %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
+    end
+
+    # Use callbacks to share common setup or constraints between actions.
+    def set_product
+      @product = Product.find(params[:id])
+    end
+
+  def owninguser
+    @product.user == current_user
+  end
+
+    # Never trust parameters from the scary internet, only allow the white list through.
+    def product_params
+      params.require(:product).permit(:manufacturer_id, :modtype_id, :modality_id, :whattype, :serial, :condition, :country, :region, :prefremovalmethod, :price, :message_id, :warranty, :rating, :listedon, :listeduntil, :autorenew, :availability, :availabilitydate, :user, :year, :dealertype, :hospitaltype, :orthopedictype, :imagingcentertype, :drofficetype, :urgenttype, :pain, :Managementtype, :veterinarytype, :chiropractictype, :podiatrytype, :painmanagementtype, :dentaltype, :transaction_id, :user_id, :overallcategory_id, :manufacturer_name, :modality_name, :modtype_name, :transaction_name, :user_name, :overallcategory_name)
+    end
+end

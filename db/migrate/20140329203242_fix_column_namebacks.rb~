@@ -1,0 +1,4 @@
+class FixColumnNamebacks < ActiveRecord::Migration
+  def change
+  end
+end

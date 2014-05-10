@@ -1,0 +1,80 @@
+= hidden_field_tag :direction, params[:direction]
+= hidden_field_tag :sort, params[:sort]
+%table.sorted
+  %tr
+    %th= sortable "modtype_name", "modtype"
+    %th= sortable "overallcategory_name", "overallcategory"
+    %th= sortable "manufacturer_name", "manufacturer"
+    %th= sortable "modality_name", "modality"
+    //= link_to Serial
+    //= link_to Condition
+    %th= sortable "country"
+    //= link_to Region
+    //= link_to Prefremovalmethod
+    //= link_to Price
+    //= link_to Message
+    //= link_to Warranty
+    //= link_to Rating
+    //= link_to Listedon
+    //= link_to Listeduntil
+    //= link_to Autorenew
+    //= link_to Availability
+    //= link_to Availabilitydate
+    //= link_to User
+    //= link_to Year
+    //= link_to Dealertype
+    //= link_to Hospitaltype
+    //= link_to Orthopedictype
+    //= link_to Imagingcentertype
+    //= link_to Drofficetype
+    //= link_to Urgenttype
+    //= link_to Pain
+    //= link_to Managementtype
+    //= link_to Veterinarytype
+    //= link_to Chiropractictype
+    //= link_to Podiatrytype
+    //= link_to Dentaltype
+    //= link_to Transaction
+    //= link_to
+    //= link_to
+    //= link_to
+  - @products.each do |product|
+    %tr
+      %td= link_to product.modtype.name, product
+      %td= product.overallcategory.name
+      %td= product.manufacturer.name
+      %td= product.modality.name
+      //%td= product.serial
+      //%td= product.condition
+      %td= product.country
+      //%td= product.region
+      //%td= product.prefremovalmethod
+      //%td= product.price
+      //%td= product.messages
+      //%td= product.warranty
+      //%td= product.rating
+      //%td= product.listedon
+      //%td= product.listeduntil
+      //%td= product.autorenew
+      //%td= product.availability
+      //%td= product.availabilitydate
+      //%td= product.user.id
+      //%td= product.year
+      //%td= product.dealertype
+      //%td= product.hospitaltype
+      //%td= product.orthopedictype
+      //%td= product.imagingcentertype
+      //%td= product.drofficetype
+      //%td= product.urgenttype
+      //%td= product.painmanagementtype
+      //%td= product.veterinarytype
+      //%td= product.chiropractictype
+      //%td= product.podiatrytype
+      //%td= product.dentaltype
+      //%td= product.transaction
+      //%td//= link_to 'Show', product
+      //%td//= link_to 'Edit', edit_product_path(product)
+      - if product.myproduct(current_user)
+        %td= link_to 'Remove product Record', product, :method => :delete, :data => { :confirm => 'Are you sure?' }
+%br
+= will_paginate @products

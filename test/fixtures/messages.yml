@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  body: 
+  product_id: 
+  fromuser: 1
+  touser: 1
+
+two:
+  body: 
+  product_id: 
+  fromuser: 1
+  touser: 1

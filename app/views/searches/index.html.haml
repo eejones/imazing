@@ -1,0 +1,67 @@
+%h1 Listing searches
+
+%table
+  %tr
+    %th Keywords
+    %th Manufacturer
+    %th Modtype
+    %th Modality
+    %th Condition
+    %th Country
+    %th Region
+    %th Prefremovalmethod
+    %th Minimum price
+    %th Maximum price
+    %th Rating
+    %th Availabilitydate
+    %th Year
+    %th Dealertype
+    %th Hospitaltype
+    %th Orthopedictype
+    %th Imagingcentertype
+    %th Drofficetype
+    %th Urgenttype
+    %th Painmanagementtype
+    %th Veterinarytype
+    %th Chiropractictype
+    %th Podiatrytype
+    %th Dentaltype
+    %th Overallcategory
+    %th
+    %th
+    %th
+
+  - @searches.each do |search|
+    %tr
+      %td= search.keywords
+      %td= search.manufacturer_id
+      %td= search.modtype_id
+      %td= search.modality_id
+      %td= search.condition_id
+      %td= search.country_id
+      %td= search.region_id
+      %td= search.prefremovalmethod_id
+      %td= search.minimum_price
+      %td= search.maximum_price
+      %td= search.rating
+      %td= search.availabilitydate
+      %td= search.year
+      %td= search.dealertype
+      %td= search.hospitaltype
+      %td= search.orthopedictype
+      %td= search.imagingcentertype
+      %td= search.drofficetype
+      %td= search.urgenttype
+      %td= search.painmanagementtype
+      %td= search.veterinarytype
+      %td= search.chiropractictype
+      %td= search.podiatrytype
+      %td= search.dentaltype
+      %td= search.overallcategory_id
+      %td= link_to 'Show', search
+      %td= link_to 'Edit', edit_search_path(search)
+      %td= link_to 'Destroy', search, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Search', new_search_path

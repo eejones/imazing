@@ -1,0 +1,89 @@
+%div.awesome
+  %h2
+    Edit #{resource_name.to_s.humanize}
+  = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
+    = devise_error_messages!
+    %div
+      = f.label :email
+      = f.email_field :email, autofocus: true
+    - if devise_mapping.confirmable? && resource.pending_reconfirmation?
+      %div
+        Currently waiting confirmation for: #{resource.unconfirmed_email}
+    = f.label :password
+    %i (leave blank if you don't want to change it)
+    = f.password_field :password, autocomplete: "off"
+    = f.label :password_confirmation
+    = f.password_field :password_confirmation, autocomplete: "off"
+    = f.label :current_password
+    %i (we need your current password to confirm your changes)
+    = f.password_field :current_password, autocomplete: "off"
+    %div
+      Username
+      = f.text_field :username
+      First Name
+      = f.text_field :fname
+      Last Name
+      = f.text_field :lname
+      Should this be anonymous?
+      = f.check_box :anonymous
+      = f.label :company
+      = f.text_field :company
+      = f.label :phonecountrycode
+      = f.text_field :phonecountrycode
+      = f.label :officephone
+      = f.text_field :officephone
+      = f.label :mobilephone
+      = f.text_field :mobilephone
+      = f.label :address
+      = f.text_field :address
+    %div.usertype
+      %h2 What type of User are you?
+      %ul
+        %li
+          Dealer/Broker
+          = f.check_box :dealertype
+        %li{:class=>"divider"}
+        %li
+          Hospital
+          = f.check_box :hospitaltype
+        %li{:class=>"divider"}
+        %li
+          Orthopedic
+          = f.check_box :orthopedictype
+        %li{:class=>"divider"}
+        %li
+          Imaging Center
+          = f.check_box :imagingcentertype
+        %li{:class=>"divider"}
+        %li
+          Dr Office
+          = f.check_box :drofficetype
+        %li{:class=>"divider"}
+        %li
+          Urgent Care
+          = f.check_box :urgenttype
+        %li{:class=>"divider"}
+        %li
+          Pain Management
+          = f.check_box :painmanagementtype
+        %li{:class=>"divider"}
+        %li
+          Vertinary
+          = f.check_box :veterinarytype
+        %li{:class=>"divider"}
+        %li
+          Chiropractic
+          = f.check_box :chiropractictype
+        %li{:class=>"divider"}
+        %li
+          Podiatry
+          = f.check_box :podiatrytype
+        %li{:class=>"divider"}
+        %li
+          Dental
+          = f.check_box :dentaltype
+    %div= f.submit "Update"
+  %h3 Cancel my account
+  %p
+    Unhappy? #{button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete}
+  = link_to "Back", :back

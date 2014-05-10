@@ -1,0 +1,15 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  %br
+  %b= @manufacturer.name
+  %br
+  - @manufacturer.modtypes.each do |md|
+    = md.name
+    |
+    = md.id
+    %br
+= link_to 'Edit', edit_manufacturer_path(@manufacturer)
+\|
+= link_to 'Back', manufacturers_path

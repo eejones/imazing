@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  manufacturer_id: 
+  modtype_id: 
+
+two:
+  manufacturer_id: 
+  modtype_id: 

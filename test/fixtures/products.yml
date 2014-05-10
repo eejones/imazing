@@ -1,0 +1,71 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  manufacturer: MyString
+  type: 
+  modality: MyString
+  whattype: MyString
+  serial: MyString
+  condition: MyString
+  country: MyString
+  region: MyString
+  prefremovalmethod: MyString
+  price: 9.99
+  message_id: 
+  warranty: MyString
+  rating: 1
+  listedon: 2014-03-22
+  listeduntil: 2014-03-22 15:36:33
+  autorenew: false
+  availability: MyString
+  availabilitydate: 2014-03-22
+  user: 1
+  year: 2014-03-22
+  dealertype: false
+  hospitaltype: false
+  orthopedictype: false
+  imagingcentertype: false
+  drofficetype: false
+  urgenttype: false
+  pain: MyString
+  Managementtype: false
+  veterinarytype: false
+  chiropractictype: false
+  podiatrytype: false
+  dentaltype: false
+  transaction_id: 
+
+two:
+  manufacturer: MyString
+  type: 
+  modality: MyString
+  whattype: MyString
+  serial: MyString
+  condition: MyString
+  country: MyString
+  region: MyString
+  prefremovalmethod: MyString
+  price: 9.99
+  message_id: 
+  warranty: MyString
+  rating: 1
+  listedon: 2014-03-22
+  listeduntil: 2014-03-22 15:36:33
+  autorenew: false
+  availability: MyString
+  availabilitydate: 2014-03-22
+  user: 1
+  year: 2014-03-22
+  dealertype: false
+  hospitaltype: false
+  orthopedictype: false
+  imagingcentertype: false
+  drofficetype: false
+  urgenttype: false
+  pain: MyString
+  Managementtype: false
+  veterinarytype: false
+  chiropractictype: false
+  podiatrytype: false
+  dentaltype: false
+  transaction_id: 

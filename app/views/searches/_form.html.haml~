@@ -1,0 +1,86 @@
+= form_for @search do |f|
+  - if @search.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@search.errors.count, "error")} prohibited this search from being saved:"
+      %ul
+        - @search.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :keywords
+    = f.text_field :keywords
+  .field
+  #overallcategorycreate
+    = f.label :overallcategory
+    = f.collection_select(:overallcategory_id, Overallcategory.all, :id, :name)
+  .modalitycreate
+    = f.label :modality
+    //= f.collection_select(:modality_id, Modality.all, :id, :name, options = {:include_blank => true}, html_options = { data: {dynamic_selectable_url: dynamic_select_modtypes_path(':modality_id'), dynamic_selectable_target: '#product_modtype_id'}})
+  .field
+    //= f.label :modtype
+    //= f.collection_select(:modtype_id, @product.modality.try(:modtypes) || [], :id, :name, options = {:include_blank => true}, html_options = { data: {dynamic_selectable_url: dynamic_select_manufacturers_path(':modtype_id'), dynamic_selectable_target: '#product_manufacturer_id'}})
+  .field
+    //= f.label :manufacturer
+    //= f.collection_select(:manufacturer_id, @product.modtype.try(:manufacturers) || [], :id, :name, :include_blank => true)
+  .field
+    = f.label :minimum_price
+    = f.text_field :minimum_price
+  .field
+    = f.label :maximum_price
+    = f.text_field :maximum_price
+  .field
+    //= f.label :condition_id
+    //= f.number_field :condition_id
+  .field
+    //= f.label :country_id
+    //= f.number_field :country_id
+  .field
+    //= f.label :region_id
+    //= f.number_field :region_id
+  .field
+    //= f.label :prefremovalmethod_id
+    //= f.number_field :prefremovalmethod_id
+  .field
+    //= f.label :rating
+    //= f.number_field :rating
+  .field
+    //= f.label :availabilitydate
+    //= f.date_select :availabilitydate, {:start_year => Time.now.year, :end_year => Time.now.year + 1}
+  .field
+    = f.label :year
+    = f.date_select :year, {:start_year => Time.now.year, :end_year => Time.now.year - 40, :discard_day => true, :discard_month => true}, :selected => Time.now.year
+  .field
+    //= f.label :dealertype
+    //= f.check_box :dealertype
+  .field
+    //= f.label :hospitaltype
+    //= f.check_box :hospitaltype
+  .field
+    //= f.label :orthopedictype
+    //= f.check_box :orthopedictype
+  .field
+    //= f.label :imagingcentertype
+    //= f.check_box :imagingcentertype
+  .field
+    //= f.label :drofficetype
+    //= f.check_box :drofficetype
+  .field
+    //= f.label :urgenttype
+    //= f.check_box :urgenttype
+  .field
+    //= f.label :painmanagementtype
+    //= f.check_box :painmanagementtype
+  .field
+    //= f.label :veterinarytype
+    //= f.check_box :veterinarytype
+  .field
+    //= f.label :chiropractictype
+    //= f.check_box :chiropractictype
+  .field
+    //= f.label :podiatrytype
+    //= f.check_box :podiatrytype
+  .field
+    //= f.label :dentaltype
+    //= f.check_box :dentaltype
+  .actions
+    = f.submit 'Search'

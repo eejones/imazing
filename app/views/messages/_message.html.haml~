@@ -1,0 +1,14 @@
+= div_for message do
+  = :product_id
+  = product_id
+  = group_id
+  = :group_id
+  = message.body
+  |
+  = message.fromuser
+  |
+  = message.touser
+  |
+  = link_to 'Edit', edit_message_path(@message)
+  |
+  = link_to 'Back', messages_path

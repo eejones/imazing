@@ -1,0 +1,5 @@
+class AddOverallCategoryToProducts < ActiveRecord::Migration
+  def change
+    add_reference :products, :overallcategory, index:true
+  end
+end

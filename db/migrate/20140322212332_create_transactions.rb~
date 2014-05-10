@@ -1,0 +1,14 @@
+class CreateTransactions < ActiveRecord::Migration
+  def change
+    create_table :transactions do |t|
+      t.string :prefremovalmethod
+      t.decimal :sellremovalcost
+      t.decimalproduct :sellshipcost
+      t.time :selldate
+      t.integer :selluser
+      t.integer :buyuser
+
+      t.timestamps
+    end
+  end
+end

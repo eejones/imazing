@@ -1,0 +1,7 @@
+module ProductsHelper
+
+  def myproduct
+    self.user == current_user
+  end
+
+end

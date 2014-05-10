@@ -1,0 +1,4 @@
+class DropCategorizationTable < ActiveRecord::Migration
+  def change
+  end
+end

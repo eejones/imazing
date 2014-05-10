@@ -1,0 +1,101 @@
+%p#notice= notice
+
+%p
+  %b Manufacturer:
+  = @product.manufacturer.name
+%p
+  %b Modality Type:
+  = @product.modtype.name
+%p
+  %b OverallCategory
+  = @product.overallcategory.name
+%p
+  %b Modality:
+  = @product.modality.name
+%p
+%p
+  %b Serial:
+  = @product.serial
+%p
+  %b Condition:
+  = @product.condition
+%p
+  %b Country:
+  = @product.country
+%p
+  %b Region:
+  = @product.region
+%p
+  %b Prefremovalmethod:
+  = @product.prefremovalmethod
+%p
+  %b Price:
+  = @product.price
+%p
+  %b Message:
+  = @product.messages
+%p
+  %b Warranty:
+  = @product.warranty
+%p
+  %b Rating:
+  = @product.rating
+%p
+  %b Listedon:
+  = @product.listedon
+%p
+  %b Listeduntil:
+  = @product.listeduntil
+%p
+  %b Autorenew:
+  = @product.autorenew
+%p
+  %b Availability:
+  = @product.availability
+%p
+  %b Availabilitydate:
+  = @product.availabilitydate
+%p
+  %b User:
+  = @product.user
+%p
+  %b Year:
+  = @product.year
+%p
+  %b Dealertype:
+  = @product.dealertype
+%p
+  %b Hospitaltype:
+  = @product.hospitaltype
+%p
+  %b Orthopedictype:
+  = @product.orthopedictype
+%p
+  %b Imagingcentertype:
+  = @product.imagingcentertype
+%p
+  %b Drofficetype:
+  = @product.drofficetype
+%p
+  %b Urgenttype:
+  = @product.urgenttype
+%p
+  %b Pain:
+  = @product.painmanagementtype
+%p
+  %b Veterinarytype:
+  = @product.veterinarytype
+%p
+  %b Chiropractictype:
+  = @product.chiropractictype
+%p
+  %b Podiatrytype:
+  = @product.podiatrytype
+%p
+  %b Dentaltype:
+  = @product.dentaltype
+= render "messages/form"
+//= link_to 'Send A message about this product', new_product_message_path(:product_id => @product.id)
+= link_to 'Edit', edit_product_path(@product)
+\|
+= link_to 'Back', products_path

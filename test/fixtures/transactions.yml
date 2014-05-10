@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  prefremovalmethod: MyString
+  sellremovalcost: 9.99
+  sellshipcost: 
+  selldate: 2014-03-22 16:23:32
+  selluser: 1
+  buyuser: 1
+
+two:
+  prefremovalmethod: MyString
+  sellremovalcost: 9.99
+  sellshipcost: 
+  selldate: 2014-03-22 16:23:32
+  selluser: 1
+  buyuser: 1

@@ -1,0 +1,22 @@
+%h1 Listing overallcategories
+
+%table
+  %tr
+    %th Name
+    %th Product
+    %th
+    %th
+    %th
+
+  - @overallcategories.each do |overallcategory|
+    %tr
+      %td= overallcategory.name
+      - if overallcategory.products.exists?
+        %td= overallcategory.products.count
+      %td= link_to 'Show', overallcategory
+      %td= link_to 'Edit', edit_overallcategory_path(overallcategory)
+      %td= link_to 'Destroy', overallcategory, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Overallcategory', new_overallcategory_path

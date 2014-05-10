@@ -1,0 +1,99 @@
+%h2 Sign up
+= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+  = devise_error_messages!
+  %div
+    = f.label :email
+    %br/
+    = f.email_field :email, autofocus: true
+  %div
+    = f.label :password
+    %br/
+    = f.password_field :password, autocomplete: "off"
+  %div
+    = f.label :password_confirmation
+    %br/
+    = f.password_field :password_confirmation, autocomplete: "off"
+  %div
+    = f.label :username
+    %br/
+    = f.text_field :username
+  %div
+    = f.label :fname
+    %br/
+    = f.text_field :fname
+  %div
+    = f.label :lname
+    %br/
+    = f.text_field :lname
+  %div
+    = f.label :company
+    %br/
+    = f.text_field :company
+  %div
+    = f.label :phonecountrycode
+    %br/
+    = f.text_field :phonecountrycode
+  %div
+    = f.label :officephone
+    %br/
+    = f.text_field :officephone
+  %div
+    = f.label :mobilephone
+    %br/
+    = f.text_field :mobilephone
+  %div
+    = f.label :anonymous
+    = f.check_box :anonymous
+  %div
+    = f.label :address
+    %br/
+    = f.text_field :address
+  %div.usertype
+    %h2 What type of User are you?
+    %ul
+      %li
+        Dealer/Broker
+        = f.check_box :dealertype
+      %li{:class=>"divider"}
+      %li
+        Hospital
+        = f.check_box :hospitaltype
+      %li{:class=>"divider"}
+      %li
+        Orthopedic
+        = f.check_box :orthopedictype
+      %li{:class=>"divider"}
+      %li
+        Imaging Center
+        = f.check_box :imagingcentertype
+      %li{:class=>"divider"}
+      %li
+        Dr Office
+        = f.check_box :drofficetype
+      %li{:class=>"divider"}
+      %li
+        Urgent Care
+        = f.check_box :urgenttype
+      %li{:class=>"divider"}
+      %li
+        Pain Management
+        = f.check_box :painmanagementtype
+      %li{:class=>"divider"}
+      %li
+        Vertinary
+        = f.check_box :veterinarytype
+      %li{:class=>"divider"}
+      %li
+        Chiropractic
+        = f.check_box :chiropractictype
+      %li{:class=>"divider"}
+      %li
+        Podiatry
+        = f.check_box :podiatrytype
+      %li{:class=>"divider"}
+      %li
+        Dental
+        = f.check_box :dentaltype
+
+  %div= f.submit "Sign up"
+= render "devise/shared/links"

@@ -1,0 +1,4 @@
+class Overallcategory < ActiveRecord::Base
+  has_many :overallcategorizations
+  has_many :products, :through => :overallcategorizations
+end

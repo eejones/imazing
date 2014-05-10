@@ -1,0 +1,109 @@
+= form_for @product do |f|
+  - if @product.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@product.errors.count, "error")} prohibited this product from being saved:"
+      %ul
+        - @product.errors.full_messages.each do |msg|
+          %li= msg
+
+  #overallcategorycreate
+    = f.label :overallcategory
+    = f.collection_select(:overallcategory_id, Overallcategory.all, :id, :name, options = {:include_blank => true})
+  .modalitycreate
+    = f.label :modality
+    = f.collection_select(:modality_id, Modality.all, :id, :name, options = {:include_blank => true}, html_options = { data: {dynamic_selectable_url: dynamic_select_modtypes_path(':modality_id'), dynamic_selectable_target: '#product_modtype_id'}})
+    // :include_blank can also be 'true' to just have a blank field instead of a string
+    // :onchange => ("$('#modtypecreate').submit()"))
+  .field
+    = f.label :modtype
+    = f.collection_select(:modtype_id, @product.modality.try(:modtypes) || [], :id, :name, options = {:include_blank => true}, html_options = { data: {dynamic_selectable_url: dynamic_select_manufacturers_path(':modtype_id'), dynamic_selectable_target: '#product_manufacturer_id'}})
+  .field
+    = f.label :manufacturer
+    = f.collection_select(:manufacturer_id, @product.modtype.try(:manufacturers) || [], :id, :name, :include_blank => true)
+  .field
+    = f.label :serial
+    = f.text_field :serial
+  .field
+    = f.label :condition
+    = f.text_field :condition
+  .field
+    = f.label :country
+    = f.country_code_select(:country, [[ 'United States', 'United States' ], [ 'Canada', 'Canada' ]])
+  .field
+    = f.label :region
+    = f.text_field :region
+  .field
+    = f.label :prefremovalmethod
+    = f.text_field :prefremovalmethod
+  .field
+    = f.label :price
+    = f.text_field :price
+  .field
+    = f.label :warranty
+    = f.text_field :warranty
+  .field
+    = f.label :listedon
+    = f.date_select :listedon, {:start_year => Time.now.year, :end_year => Time.now.year + 1}, :selected => Time.now
+  .field
+    = f.label :listeduntil
+    = f.date_select :listeduntil, {:start_year => Time.now.year, :end_year => Time.now.year + 1}
+  .field
+    = f.label :autorenew
+    = f.check_box :autorenew
+  .field
+    = f.label :availability
+    = f.text_field :availability
+  .field
+    = f.label :availabilitydate
+    = f.date_select :availabilitydate, {:start_year => Time.now.year, :end_year => Time.now.year + 1}
+  .field
+    = f.label :year
+    = f.date_select :year, {:start_year => Time.now.year, :end_year => Time.now.year - 40, :discard_day => true, :discard_month => true}, :selected => @product.year
+  %div.usertype
+    %h2 What type of User are you?
+    %ul
+      %li
+        Dealer/Broker
+        = f.check_box :dealertype
+      %li{:class=>"divider"}
+      %li
+        Hospital
+        = f.check_box :hospitaltype
+      %li{:class=>"divider"}
+      %li
+        Orthopedic
+        = f.check_box :orthopedictype
+      %li{:class=>"divider"}
+      %li
+        Imaging Center
+        = f.check_box :imagingcentertype
+      %li{:class=>"divider"}
+      %li
+        Dr Office
+        = f.check_box :drofficetype
+      %li{:class=>"divider"}
+      %li
+        Urgent Care
+        = f.check_box :urgenttype
+      %li{:class=>"divider"}
+      %li
+        Pain Management
+        = f.check_box :painmanagementtype
+      %li{:class=>"divider"}
+      %li
+        Vertinary
+        = f.check_box :veterinarytype
+      %li{:class=>"divider"}
+      %li
+        Chiropractic
+        = f.check_box :chiropractictype
+      %li{:class=>"divider"}
+      %li
+        Podiatry
+        = f.check_box :podiatrytype
+      %li{:class=>"divider"}
+      %li
+        Dental
+        = f.check_box :dentaltype
+  .actions
+    = f.submit 'Save'

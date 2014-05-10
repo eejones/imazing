@@ -1,0 +1,81 @@
+%p#notice= notice
+
+%p
+  %b Keywords:
+  = @search.keywords
+%p
+  %b Manufacturer:
+  = @search.manufacturer_id
+%p
+  %b Modtype:
+  = @search.modtype_id
+%p
+  %b Modality:
+  = @search.modality_id
+%p
+  %b Condition:
+  = @search.condition_id
+%p
+  %b Country:
+  = @search.country_id
+%p
+  %b Region:
+  = @search.region_id
+%p
+  %b Prefremovalmethod:
+  = @search.prefremovalmethod_id
+%p
+  %b Minimum price:
+  = @search.minimum_price
+%p
+  %b Maximum price:
+  = @search.maximum_price
+%p
+  %b Rating:
+  = @search.rating
+%p
+  %b Availabilitydate:
+  = @search.availabilitydate
+%p
+  %b Year:
+  = @search.year
+%p
+  %b Dealertype:
+  = @search.dealertype
+%p
+  %b Hospitaltype:
+  = @search.hospitaltype
+%p
+  %b Orthopedictype:
+  = @search.orthopedictype
+%p
+  %b Imagingcentertype:
+  = @search.imagingcentertype
+%p
+  %b Drofficetype:
+  = @search.drofficetype
+%p
+  %b Urgenttype:
+  = @search.urgenttype
+%p
+  %b Painmanagementtype:
+  = @search.painmanagementtype
+%p
+  %b Veterinarytype:
+  = @search.veterinarytype
+%p
+  %b Chiropractictype:
+  = @search.chiropractictype
+%p
+  %b Podiatrytype:
+  = @search.podiatrytype
+%p
+  %b Dentaltype:
+  = @search.dentaltype
+%p
+  %b Overallcategory:
+  = @search.overallcategory_id
+
+= link_to 'Edit', edit_search_path(@search)
+\|
+= link_to 'Back', searches_path

@@ -1,0 +1,14 @@
+= div_for product do
+  %li
+    = link_to "Product", product_path(product, :only_path => false)
+    |
+    |
+    Product ID
+    = product.id
+    |
+    = link_to 'Show', show_product_path(product, :only_path => false)
+    |
+    = link_to 'Edit product', edit_product_path(product, :only_path => false)
+    = link_to 'Remove product Record', product_path(product, :only_path => false), :method => :delete, :data => { :confirm => 'Are you sure?' }
+    %br
+    %div#productdiv

@@ -1,0 +1,55 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  keywords: MyString
+  manufacturer_id: 1
+  modtype_id: 1
+  modality_id: 1
+  condition_id: 1
+  country_id: 1
+  region_id: 1
+  prefremovalmethod_id: 1
+  minimum_price: 1.5
+  maximum_price: 1.5
+  rating: 1
+  availabilitydate: 2014-04-12
+  year: 2014-04-12
+  dealertype: false
+  hospitaltype: false
+  orthopedictype: false
+  imagingcentertype: false
+  drofficetype: false
+  urgenttype: false
+  painmanagementtype: false
+  veterinarytype: false
+  chiropractictype: false
+  podiatrytype: false
+  dentaltype: false
+  overallcategory_id: 1
+
+two:
+  keywords: MyString
+  manufacturer_id: 1
+  modtype_id: 1
+  modality_id: 1
+  condition_id: 1
+  country_id: 1
+  region_id: 1
+  prefremovalmethod_id: 1
+  minimum_price: 1.5
+  maximum_price: 1.5
+  rating: 1
+  availabilitydate: 2014-04-12
+  year: 2014-04-12
+  dealertype: false
+  hospitaltype: false
+  orthopedictype: false
+  imagingcentertype: false
+  drofficetype: false
+  urgenttype: false
+  painmanagementtype: false
+  veterinarytype: false
+  chiropractictype: false
+  podiatrytype: false
+  dentaltype: false
+  overallcategory_id: 1

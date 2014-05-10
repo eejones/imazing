@@ -1,0 +1,19 @@
+%h1 Listing modalities
+=@modalities.count
+%table
+  %tr
+    %th Name
+    %th
+    %th
+    %th
+
+  - @modalities.each do |modality|
+    %tr
+      %td= modality.name
+      %td= link_to 'Show', modality
+      %td= link_to 'Edit', edit_modality_path(modality)
+      %td= link_to 'Destroy', modality, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Modality', new_modality_path

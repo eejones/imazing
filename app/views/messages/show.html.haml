@@ -1,0 +1,18 @@
+%p#notice= notice
+
+%p
+  %b Message Body:
+  = @message.body
+%p
+  %b Product:
+  = @message.product
+%p
+  %b Fromuser:
+  = @message.fromuser
+%p
+  %b Touser:
+  = @message.touser
+
+= link_to 'Edit', edit_message_path(@message)
+\|
+= link_to 'Back', messages_path

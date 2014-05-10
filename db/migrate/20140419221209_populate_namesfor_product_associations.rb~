@@ -1,0 +1,13 @@
+class PopulateNamesforProductAssociations < ActiveRecord::Migration
+  products = Product.all
+  products.each do |p|
+    modality = Modality.find_by_id(p.modality_id)
+    modtype = Modtype.find_by_id(p.modtype_id)
+    manufacturer = Manufacturer.find_by_id(p.manufacturer_id)
+    overallcategory = Overallcategory.find_by_id(p.overallcategory_id)
+    p.modality_name = modality.name if !modality.empty?
+    p.modtype_name = modtype.name
+    p.manufacturer_name = manufacturer.name
+    p.overallcategory_name = overallcategory.name
+  end
+end

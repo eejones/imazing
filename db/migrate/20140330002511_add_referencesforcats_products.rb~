@@ -1,0 +1,8 @@
+class AddReferencesforcatsProducts < ActiveRecord::Migration
+  def change
+    add_reference :products, :message, index:true
+    add_reference :products, :product, index:true
+    add_reference :products, :transaction, index:true
+    add_reference :products, :message, index:true
+  end
+end

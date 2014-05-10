@@ -1,0 +1,143 @@
+require 'rubygems'
+require 'bundler/setup'
+require 'nokogiri'
+require 'open-uri'
+require 'mechanize'
+require 'rest-client'
+
+#starting things off
+url="http://www.dotmed.com/listings/postlisting.html?type=part&mode=sale"
+ajaxurl="http://www.dotmed.com/ajax/components/ajax"
+agent = Mechanize.new
+agent.get(url)
+
+###for the actual ajax query from the RestClient.post, the only difference between equipment and parts is '_t'.###
+
+#actual method to loop through all categories
+def all_loop(mypages)
+  superarray=[]
+  ajaxurl="http://www.dotmed.com/ajax/components/ajax"
+    mypages.each do |category|
+      puts "Getting #{category.text}"
+      newcatvalue=category['value']
+      newcatname=category['title']
+        puts "Fetching #{newcatname}..."
+          begin
+          catsection3=RestClient.post(ajaxurl,{'_comp'=>'/ajax/components/listings/show_categories_jquery', ''=>'undefined', '_t'=>'part', 'form'=>'select_form', '_c'=> '3', '_p'=>"#{newcatvalue}"})
+          cat_content = Nokogiri::HTML(catsection3)
+        rescue Exception=>e
+          puts "Error: #{e}"
+          sleep 3
+        else
+          spec_content = cat_content.css("select option")
+          if !spec_content.empty?
+             puts "\t...Success, saved to #{category.text}"
+             myid=newcatvalue.to_i
+             cathash={:id => myid, :name=> newcatname}
+             cathash[:categories] = manufacturer_loop(spec_content)
+             superarray << cathash
+          end
+        ensure
+          sleep 1.0
+        end
+    end
+    superarray.flatten!
+    superarray
+end
+
+#check loop 4 for manufacturer of products
+def manufacturer_loop(myproducts)
+  ajaxurl="http://www.dotmed.com/ajax/components/ajax"
+  myarray=[]
+  myproducts.each do |category|
+    mysubhash={}
+    puts "Getting #{category.text}"
+    newcatvalue=category['value']
+    mysubhash[:id] = newcatvalue.to_i
+    mysubhash[:name] = category['title']
+    puts "Fetching #{category.text}..."
+          begin
+          catsection3=RestClient.post(ajaxurl,{'_comp'=>'/ajax/components/listings/show_categories_jquery', ''=>'undefined', '_t'=>'part', 'form'=>'select_form', '_c'=> '4', '_d'=>"#{newcatvalue}"})
+          cat_content = Nokogiri::HTML(catsection3)
+        rescue Exception=>e
+          puts "Error: #{e}"
+          sleep 3
+        else
+          spec_content = cat_content.css("select option")
+          if !spec_content.empty?
+              mysubarray=[]
+              spec_content.each do |s|
+                myvalue={}  
+                myvalue[:id] = s['value'].to_i
+                myvalue[:name] = s['title']
+                mysubarray << myvalue
+                puts "\t...Success, saved to #{category.text}"
+              end
+              mysubhash[:categories]=mysubarray
+              myarray << mysubhash
+          end
+        ensure
+          sleep 1.0
+        end
+      end
+      myarray
+    end
+
+#formatting method
+def fixformat(str)
+  str.gsub(/\//,"").gsub(/\(\d*\)/,"").gsub(/»/,"").strip.gsub(/\s/,"_")
+end
+
+
+##Only Imaging section##
+  mypages1=agent.page.form_with(:name => "select_form").field_with(:name=>"header").options
+  origvalue=mypages1[10]
+  ajaxurl="http://www.dotmed.com/ajax/components/ajax"
+  agent.page.form_with(:name => "select_form").header="#{origvalue.value}"
+  catsection2=RestClient.post(ajaxurl,{'_comp'=>'/ajax/components/listings/show_categories_jquery', ''=>'undefined', '_t'=>'part', 'form'=>'select_form', '_h' =>"#{origvalue.value}", '_c'=> '2'})
+  mycat2 = Nokogiri::HTML(catsection2)
+  cat2options=mycat2.css("select option")
+  puts "Getting #{origvalue.text}"
+  manufacturedarray=[]
+  manufacturedarray=all_loop(cat2options)
+
+##########################################3
+#i need to call rake db:category_data to call the populate task below to make this work
+namespace :db do
+  desc "Fill database with sample data"
+  #the task populate :environment do and Comapny.create! sections are to make sure I have access to the Company model and the local rails environment
+  task :category_data => :environment do
+    Modality.create!(name: "Sample Product 1")
+    manufacturedarray.each do |m|
+      name = m[:name]
+      @modality = Modality.create!(name: name)
+      if m[:name] == "Bone Densitometer"
+        m[:categories].each do |manuf|
+          name = manuf[:name]
+          if !Manufacturer.find_by_name(manuf[:name])
+            @manufacturer = Manufacturer.create!(altid: altid, name: name)
+            @modtype.modtypemanufacturers.create(:manufacturer_id => @manufacturer.id)
+          else
+            @manufacturer = Manufacturer.find_by_name(manuf[:name])
+            @modtype.modtypemanufacturers.create(:manufacturer_id => @manufacturer.id)
+          end
+        end          
+      else
+        m[:categories].each do |sub|
+          name = sub[:name]
+            @modtype = @modality.modtypes.create(:name => name)
+            sub[:categories].each do |manuf|
+              name = manuf[:name]
+              if !Manufacturer.find_by_name(manuf[:name])
+                 @manufacturer = Manufacturer.create!(altid: altid, name: name)
+                 @modtype.modtypemanufacturers.create(:manufacturer_id => @manufacturer.id)
+              else
+                 @manufacturer = Manufacturer.find_by_name(manuf[:name])
+                 @modtype.modtypemanufacturers.create(:manufacturer_id => @manufacturer.id)
+  ###I need to somehow get these to create in line and stay connected modality>modtype>manufacturer    
+              end
+            end
+        end
+      end
+    end
+  end

@@ -1,0 +1,10 @@
+= div_for message do
+  = message.body
+  |
+  = message.fromuser
+  |
+  = message.touser
+  |
+  = link_to 'Edit', edit_message_path(@message)
+  |
+  = link_to 'Back', messages_path

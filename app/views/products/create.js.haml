@@ -1,0 +1,6 @@
+/* Replace the count of videos */
+$("#resumevids_count").html("#{pluralize(@member.resumevids.count, 'Video')}");
+/* add the created video */
+$("#resumevids_test").html("#{escape_javascript(render(:partial=>@member.resumevids))}");
+/* create new blank form */
+$("#newcreated").html("#{escape_javascript(render(:partial=>'resumevids/form'))}")

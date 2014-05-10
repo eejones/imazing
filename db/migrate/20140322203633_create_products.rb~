@@ -1,0 +1,41 @@
+class CreateProducts < ActiveRecord::Migration
+  def change
+    create_table :products do |t|
+      t.string :manufacturer
+      t.string :type
+      t.string :modality
+      t.string :whattype
+      t.string :serial
+      t.string :condition
+      t.string :country
+      t.string :region
+      t.string :prefremovalmethod
+      t.decimal :price
+      t.references :message, index: true
+      t.string :warranty
+      t.integer :rating
+      t.date :listedon
+      t.time :listeduntil
+      t.boolean :autorenew
+      t.string :availability
+      t.date :availabilitydate
+      t.integer :user
+      t.date :year
+      t.boolean :dealertype
+      t.boolean :hospitaltype
+      t.boolean :orthopedictype
+      t.boolean :imagingcentertype
+      t.boolean :drofficetype
+      t.boolean :urgenttype
+      t.string :pain
+      t.boolean :Managementtype
+      t.boolean :veterinarytype
+      t.boolean :chiropractictype
+      t.boolean :podiatrytype
+      t.boolean :dentaltype
+      t.references :transaction, index: true
+
+      t.timestamps
+    end
+  end
+end

@@ -1,0 +1,19 @@
+= div_for product do
+  %li
+    = link_to product.modtype.name, product
+    |
+    //= render :partial=> 'messages/message', :collection=> product.messages
+    |
+    Product ID
+    = product.id
+    |
+    = link_to 'Show', product
+    |
+    = link_to 'Edit product', edit_product_path(product)
+    //= link_to 'Send A message about this product', new_message_path(:product_id => product.id, :touser => User.find_by_id(product.user), :toemail => product.user.email)
+    - if product.myproduct(current_user)
+      |
+      = product.user.username
+      = link_to 'Remove product Record', product, :method => :delete, :data => { :confirm => 'Are you sure?' }
+    %br
+    %div#productdiv

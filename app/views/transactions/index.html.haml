@@ -1,0 +1,29 @@
+%h1 Listing transactions
+
+%table
+  %tr
+    %th Prefremovalmethod
+    %th Sellremovalcost
+    %th Sellshipcost
+    %th Selldate
+    %th Selluser
+    %th Buyuser
+    %th
+    %th
+    %th
+
+  - @transactions.each do |transaction|
+    %tr
+      %td= transaction.prefremovalmethod
+      %td= transaction.sellremovalcost
+      %td= transaction.sellshipcost
+      %td= transaction.selldate
+      %td= transaction.selluser
+      %td= transaction.buyuser
+      %td= link_to 'Show', transaction
+      %td= link_to 'Edit', edit_transaction_path(transaction)
+      %td= link_to 'Destroy', transaction, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Transaction', new_transaction_path

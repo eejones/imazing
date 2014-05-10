@@ -1,0 +1,4 @@
+class RemoveRefFromModtype < ActiveRecord::Migration
+  def change
+  end
+end

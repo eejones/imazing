@@ -1,0 +1,4 @@
+class Modtypemanufacturer < ActiveRecord::Base
+  belongs_to :manufacturer
+  belongs_to :modtype
+end

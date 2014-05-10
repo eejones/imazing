@@ -1,0 +1,2 @@
+class Overallcategorization < ActiveRecord::Base
+end

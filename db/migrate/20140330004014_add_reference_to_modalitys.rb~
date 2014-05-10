@@ -1,0 +1,6 @@
+class AddReferenceToModalitys < ActiveRecord::Migration
+  def change
+    add_reference :modalitys, :whattype, index:true
+    add_reference :modalitys, :manufacturer, index:true
+  end
+end

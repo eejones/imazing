@@ -1,0 +1,8 @@
+class FixColumnNameIDs < ActiveRecord::Migration
+  def change
+    change_table :messages do |m|
+      m.rename :touser, :touser_id
+      m.rename :fromuser, :fromuser_id
+    end
+  end
+end

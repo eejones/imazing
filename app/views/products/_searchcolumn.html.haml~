@@ -1,0 +1,57 @@
+
+= label :overallcategory
+= collection_select(:overallcategory_id, Overallcategory.all, :id, :name)
+.modalitycreate
+= label :modality
+= collection_select(:modality_id, Modality.all, :id, :name)
+.modtypecreate
+= label :modtype
+= collection_select(:modtype_id, Modtype.all, :id, :name)
+.manufacturercreate
+= label :manufacturer
+= collection_select(:manufacturer_id, Manufacturer.all, :id, :name)
+%ul
+  %li
+    Dealer/Broker
+    = check_box :dealertype
+  %li{:class=>"divider"}
+  %li
+    Hospital
+    = check_box :hospitaltype
+  %li{:class=>"divider"}
+  %li
+    Orthopedic
+    = check_box :orthopedictype
+  %li{:class=>"divider"}
+  %li
+    Imaging Center
+    = check_box :imagingcentertype
+  %li{:class=>"divider"}
+  %li
+    Dr Office
+    = check_box :drofficetype
+  %li{:class=>"divider"}
+  %li
+    Urgent Care
+    = check_box :urgenttype
+  %li{:class=>"divider"}
+  %li
+    Pain Management
+    = check_box :painmanagementtype
+  %li{:class=>"divider"}
+  %li
+    Vertinary
+    = check_box :veterinarytype
+  %li{:class=>"divider"}
+  %li
+    Chiropractic
+    = check_box :chiropractictype
+  %li{:class=>"divider"}
+  %li
+    Podiatry
+    = check_box :podiatrytype
+  %li{:class=>"divider"}
+  %li
+    Dental
+    = check_box :dentaltype
+

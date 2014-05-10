@@ -1,0 +1,12 @@
+%h1
+  You've received a message
+  = @message.touser.fname
+  = @message.touser.lname
+= link_to(@message.product)
+I'm interested in your product
+= @message.fromuser.fname
+= @message.fromuser.fname
+= @message.fromuser.email
+= link_to(@message.fromuser)
+
+

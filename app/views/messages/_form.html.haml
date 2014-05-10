@@ -1,0 +1,13 @@
+= form_for([@product, @product.messages.build]) do |f|
+  = debug(params)
+  = params[:product_id]
+  = params[:group_id]
+  .field
+    Send a Message?
+    = f.text_field :body
+  .actions
+    = f.hidden_field :fromuser_id, :value=> current_user.id
+    = f.hidden_field :product_id, :value=> @product.id
+    = f.hidden_field :touser_id, :value=> @product.user_id
+    = f.submit 'Send Message'
+

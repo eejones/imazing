@@ -1,0 +1,10 @@
+class AddNamestoProducts < ActiveRecord::Migration
+  def change
+    add_column :products, :transaction_name, :string
+    add_column :products, :user_name, :string
+    add_column :products,, :modality_name, :string
+    add_column :products, :modtype_name, :string
+    add_column :products, :manufacturer_name, :string
+    add_column :products, :overallcategory_name, :string
+  end
+end

@@ -1,0 +1,19 @@
+%h1 Listing modtypes
+
+%table
+  %tr
+    %th Name
+    %th
+    %th
+    %th
+
+  - @modtypes.each do |modtype|
+    %tr
+      %td= modtype.name
+      %td= link_to 'Show', modtype
+      %td= link_to 'Edit', edit_modtype_path(modtype)
+      %td= link_to 'Destroy', modtype, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Modtype', new_modtype_path

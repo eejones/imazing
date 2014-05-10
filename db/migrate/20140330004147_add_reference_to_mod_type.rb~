@@ -1,0 +1,5 @@
+class AddReferenceToModType < ActiveRecord::Migration
+  def change
+    add_reference :whattypes, :manufacturers, index:true
+  end
+end

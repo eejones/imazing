@@ -1,0 +1,20 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  %br
+  %b= @modality.name
+  %br
+  - @modality.modtypes.each do |mt|
+    %b= mt.name
+    |
+    = mt.id
+    - mt.manufacturers.each do |mf|
+      = mf.name
+      |
+      = mf.id
+      %br
+    %br
+= link_to 'Edit', edit_modality_path(@modality)
+\|
+= link_to 'Back', modalities_path
