@@ -17,7 +17,7 @@
 $('select[data-dynamic-selectable-url][data-dynamic-selectable-target]').dynamicSelectable();
 
 $(function() {
-  $(document).on("click","#products th a", "#products .pagination a", function() {
+  $(document).on("click","#products .pagination a, #products th a", function() {
     $.getScript(this.href);
       return false;
   });

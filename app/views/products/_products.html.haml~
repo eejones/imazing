@@ -77,3 +77,4 @@
       - if product.myproduct(current_user)
         %td= link_to 'Remove product Record', product, :method => :delete, :data => { :confirm => 'Are you sure?' }
 = will_paginate @products
+
