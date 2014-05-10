@@ -107,63 +107,19 @@ div {
 
 /* Sort Products */
 
-.pretty th .current {
+.sorted th .current {
   padding-right: 12px;
   background-repeat: no-repeat;
   background-position: right center;
 }
 
-.pretty th .asc {
+.sorted th .asc {
   background-image: url(/images/up_arrow.gif);
 }
 
-.pretty th .desc {
+.sorted th .desc {
   background-image: url(/images/down_arrow.gif); 
 }
-
-table.sorted{
-  th > a{
-    font-weight: lighter;
-  }
-  .current {
-    text-decoration: underline;
-    font-weight: bold;
-  }
-  .asc:after {
-    .triangle-down{
-      .triangle-base{
-        content: '';
-        size: 7px;
-        display: inline-block;
-        width: 0;
-        height: 0;
-        margin-left: 7px;
-        border-left: 7px solid transparent;
-        border-right: 7px solid transparent;
-      }
-    }
-    border-top: 7px;
-    border-color: #428bca;
-  }
-  .desc:after {
-    .triangle-up {
-      .triangle-base{
-        content: '';
-        size: 7px;
-        display: inline-block;
-        width: 0;
-        height: 0;
-        margin-left: 7px;
-        border-left: 7px solid transparent;
-        border-right: 7px solid transparent;
-      }
-      color: #428bca;
-      border-bottom: 7px;
-      border-color: #428bca;
-    }
-  }
-}
-
 
 
 /* Edit Page */
@@ -234,6 +190,40 @@ table.sorted{
   image{
     float: right;
   }
+}
+
+/* Products search section */
+form#products_search p input{
+  position: initial;
+}
+
+
+/* Auto-complete section when searching */
+ul.ui-autocomplete {
+  position: absolute;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border: solid 1px #999;
+  cursor: default;
+  li {
+    background-color: #FFF;
+    border-top: solid 1px #DDD;
+    margin: 0;
+    padding: 0;
+    a {
+      color: #000;
+      display: block;
+      padding: 3px;
+    }
+    a.ui-state-hover, a.ui-state-active {
+      background-color: #FFFCB2;
+    }
+  }
+}
+
+.ui-helper-hidden-accessible {
+    position: inherit;
 }
 
 #error_explanation {
