@@ -12,16 +12,19 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require jquery.turbolinks
 //= require_tree .
 
 $('select[data-dynamic-selectable-url][data-dynamic-selectable-target]').dynamicSelectable();
 
 $(function() {
-  $("products th a").live("click"), function() {
+  $(document).on("click","#products th a", "#products .pagination a", function() {
     $.getScript(this.href);
       return false;
   });
+  $('#products_search input').keyup(function () {
+    $.get($('#products_search').attr('action'), &crarr; 
+      $('#products_search').serialize(), null, 'script');
+    return false;
+  });
 });
 
-//= require turbolinks

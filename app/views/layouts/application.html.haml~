@@ -2,9 +2,6 @@
 %html
   %head
     %title Imazing
-    = stylesheet_link_tag    "application", media: "all"
-    //I removed turbolinks bc of the issues it caused in ajax http://blog.steveklabnik.com/posts/2013-06-25-removing-turbolinks-from-rails-4
-    = javascript_include_tag "application"
     = csrf_meta_tags
   %body
     = render 'layouts/header'
