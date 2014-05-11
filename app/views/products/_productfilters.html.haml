@@ -1,0 +1,9 @@
+%label Modality
+= @products.current_scope.count
+= @products.current_scope.first.modtype_name
+= select_tag(:modality_id, options_from_collection_for_select(@products.current_scope.to_a.uniq{|product| product.modality_id}, "modality_id","modality_name"), :include_blank => true )
+//= select_tag(:modality_id, options_from_collection_for_select(@products.current_scope.select("DISTINCT(modality_id)"), "modality_name","modality_name"), :include_blank => true )
+%label Modtype
+= select_tag(:modtype_id, options_from_collection_for_select(@products.current_scope.to_a.uniq{|product| product.modtype_id}, "modtype_id", "modtype_name"), :include_blank => true )
+%label Manufacturer
+= select_tag(:manufacturer_id, options_from_collection_for_select(@products.current_scope.to_a.uniq{|product| product.manufacturer_id}, "manufacturer_id", "manufacturer_name"), :include_blank => true )

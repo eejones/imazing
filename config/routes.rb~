@@ -1,4 +1,6 @@
 Imazing::Application.routes.draw do
+  resources :search_suggestions
+
   resources :searches
 
   resources :overallcategories
@@ -10,8 +12,6 @@ Imazing::Application.routes.draw do
   resources :manufacturers
 
   resources :transactions
-
-  resources :messages
 
   devise_for :users
 #not sure if i should have added users resources
@@ -26,6 +26,8 @@ Imazing::Application.routes.draw do
   namespace :dynamic_select do
     get ':modality_id/modtypes', to: 'modtypes#indexfilter', as: 'modtypes'
     get ':modtype_id/manufacturers', to: 'manufacturers#indexfilter', as: 'manufacturers'
+    get 'modality_id/findmanufacturers', to: 'manufacturers#modalityfilter', as 'findmanufacturers'
+    get '
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

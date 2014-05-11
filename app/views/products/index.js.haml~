@@ -1,2 +1,2 @@
-$("#products").html("#{escape_javascript(render(:partial=>'products'))}")
-
+$("#products").html("#{escape_javascript(render(:partial=>'products'))}");
+$("#productfilters").html("#{escape_javascript(render(:partial=>'productfilters'))}");
