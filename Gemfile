@@ -30,6 +30,9 @@ gem 'turbolinks'
 #fix problems wiht AJAX caused by turbolinks
 gem 'jquery-turbolinks'
 
+#adding has_scope for filtering in products search
+#gem 'has_scope'
+
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.2'
 

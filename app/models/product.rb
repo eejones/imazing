@@ -1,5 +1,6 @@
 class Product < ActiveRecord::Base
   include UsersHelper
+  include Filterable
 
   has_many :messages
   belongs_to :transaction
@@ -12,6 +13,11 @@ class Product < ActiveRecord::Base
   belongs_to :overallcategory
 
   validates_presence_of :modality, :modtype, :manufacturer, :overallcategory, :year
+
+#adding scopes to better filter results 
+  scope :modality_id, -> (modality_id) { where modality_id: modality_id }
+  scope :manufacturer_id, -> (manufacturer_id) { where manufacturer_id: manufacturer_id }
+  scope :modtype_id, -> (modtype_id) { where modtype_id: modtype_id }
 
   include ApplicationHelper
 # have to set inheritance column to nil to allow the use of attribute named 'type' with self.inheritance_column = nil

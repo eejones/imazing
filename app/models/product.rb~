@@ -1,5 +1,6 @@
 class Product < ActiveRecord::Base
   include UsersHelper
+  include Filterable
 
   has_many :messages
   belongs_to :transaction
@@ -13,6 +14,11 @@ class Product < ActiveRecord::Base
 
   validates_presence_of :modality, :modtype, :manufacturer, :overallcategory, :year
 
+#adding scopes to better filter results 
+  scope :modality, -> (modality_id) { where modality_id: modality_id }
+  scope :manufacturer, -> (manufacturer_id) { where manufacturer_id: manufacturer_id }
+  scope :modtype, -> (modtype_id) { where modtype_id: modtype_id }
+
   include ApplicationHelper
 # have to set inheritance column to nil to allow the use of attribute named 'type' with self.inheritance_column = nil
 self.inheritance_column = nil
@@ -21,7 +27,7 @@ self.inheritance_column = nil
 def self.search(search)
   if search
 #    where('modtype_name LIKE ?', "%#{search}%")
-    where('modtype_name LIKE ?' or 'manufacturer_name LIKE ?' or 'modality_name LIKE ?', "%#{search}%", "%#{search}%", "%#{search}%")
+    where("modtype_name LIKE ? OR manufacturer_name LIKE ? OR modality_name LIKE ?", "%#{search}%", "%#{search}%", "%#{search}%")
   else
     scoped
   end

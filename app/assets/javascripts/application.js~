@@ -31,8 +31,8 @@ $(function() {
 //    return false;
 //  });
 //adding the products search submit function to have ajax on submit instead of searching in real-time
-  $("products_search").submit(function() {
-    $.get(this.action, $(this.serialize(), null, "script");
+  $("#products_search").submit(function() {
+    $.get(this.action, $(this).serialize(), null, "script");
     return false;
   });
 });

@@ -1,0 +1,4 @@
+%label :overallcategory
+.modalitycreate
+  %label :modality
+  = collection_select(:product, :modality_id, @products.modality_id, :id, :name, options = {:include_blank => true}

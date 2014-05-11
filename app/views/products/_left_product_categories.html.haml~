@@ -1,0 +1,5 @@
+%label :overallcategory
+= collection_select(:product, :overallcategory_id, Overallcategory.all, :id, :name, options = {:include_blank => true})
+.modalitycreate
+  %label :modality
+  = collection_select(:product, :modality_id, Modality.all, :id, :name, options = {:include_blank => true}, html_options = { data: {dynamic_selectable_url: dynamic_select_modtypes_path(':modality_id'), dynamic_selectable_target: '#product_modtype_id'}})

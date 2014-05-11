@@ -21,11 +21,17 @@ gem 'coffee-rails', '~> 4.0.0'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 
+#add jquery-ui since it is no longer included in jquery-rails
+gem 'jquery-ui-rails'
+
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
 
 #fix problems wiht AJAX caused by turbolinks
 gem 'jquery-turbolinks'
+
+#adding has_scope for filtering in products search
+gem 'has_scope'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.2'

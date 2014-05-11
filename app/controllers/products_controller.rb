@@ -5,10 +5,26 @@ class ProductsController < ApplicationController
 
   helper_method :sort_column, :sort_direction
 
+  #has_scope :modality_id
+  #has_scope :modtype_id
+  #has_scope :manufacturer_id
+
   # GET /products
   # GET /products.json
   def index
-    @products = Product.search(params[:search]).order(sort_column + " " + sort_direction).paginate(:per_page =>20, :page => params[:page])
+#    @products = Product.search(params[:search]).filter(params.slice(:modtype, :manufacturer, :modality)).order(sort_column + " " + sort_direction).paginate(:per_page =>20, :page => params[:page])
+
+#below is the working search
+#    @products = Product.search(params[:search]).order(sort_column + " " + sort_direction).paginate(:per_page =>20, :page => params[:page])
+    @products = Product.search(params[:search]).filter(params.slice(:modtype_id, :manufacturer_id, :modality_id)).order(sort_column + " " + sort_direction).paginate(:per_page =>20, :page => params[:page])
+
+#    @products = Product.filter(params.slice(:modtype_id, :manufacturer_id, :modality_id)).order(sort_column + " " + sort_direction).paginate(:per_page =>20, :page => params[:page])
+
+#setup for using has_scope with searching
+##    @products = apply_scopes(Product).all.search(params[:search]).filter(params.slice(:modtype, :manufacturer, :modality)).order(sort_column + " " + sort_direction).paginate(:per_page =>20, :page => params[:page])
+#setup to only use apply_scopes
+#    @products = apply_scopes(Product).order(sort_column + " " + sort_direction).paginate(:per_page =>20, :page => params[:page])
+
   end
 
   # GET /products/1
@@ -104,4 +120,5 @@ class ProductsController < ApplicationController
     def product_params
       params.require(:product).permit(:manufacturer_id, :modtype_id, :modality_id, :whattype, :serial, :condition, :country, :region, :prefremovalmethod, :price, :message_id, :warranty, :rating, :listedon, :listeduntil, :autorenew, :availability, :availabilitydate, :user, :year, :dealertype, :hospitaltype, :orthopedictype, :imagingcentertype, :drofficetype, :urgenttype, :pain, :Managementtype, :veterinarytype, :chiropractictype, :podiatrytype, :painmanagementtype, :dentaltype, :transaction_id, :user_id, :overallcategory_id, :manufacturer_name, :modality_name, :modtype_name, :transaction_name, :user_name, :overallcategory_name)
     end
+
 end
