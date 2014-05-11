@@ -24,7 +24,8 @@ class ProductsController < ApplicationController
 #setup for using has_scope with searching
 ##    @products = apply_scopes(Product).all.search(params[:search]).filter(params.slice(:modtype, :manufacturer, :modality)).order(sort_column + " " + sort_direction).paginate(:per_page =>20, :page => params[:page])
 #setup to only use apply_scopes
-    @products = apply_scopes(Product).order(sort_column + " " + sort_direction).paginate(:per_page =>20, :page => params[:page])
+    @myproducts = apply_scopes(Product).search(params[:search]).order(sort_column + " " + sort_direction)
+    @products=@myproducts.paginate(:per_page =>20, :page => params[:page])
 
   end
 
