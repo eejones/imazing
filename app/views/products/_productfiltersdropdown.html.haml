@@ -5,4 +5,6 @@
 %label Modtype
 = select_tag(:modtype_id, options_from_collection_for_select(@myproducts.current_scope.to_a.uniq{|product| product.modtype_id}, "modtype_id", "modtype_name", selected = params[:modtype_id]), :include_blank => true )
 %label Manufacturer
-= select_tag(:manufacturer_id, options_from_collection_for_select(@myproducts.current_scope.to_a.uniq{|product| product.manufacturer_id}, "manufacturer_id", "manufacturer_name", selected = params[:manufacturer_id), :include_blank => true )
+= select_tag(:manufacturer_id, options_from_collection_for_select(@myproducts.current_scope.to_a.uniq{|product| product.manufacturer_id}, "manufacturer_id", "manufacturer_name", selected = params[:manufacturer_id]), :include_blank => true )
+= submit_tag "Submit", :name => nil
+

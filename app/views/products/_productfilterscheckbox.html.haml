@@ -1,0 +1,13 @@
+%label Modality
+- @myproducts.to_a.uniq{|product| product.modality_id}.each do |product|
+  = product.modality_name
+  = check_box_tag("modality_id", product.modality_id, nil)  
+  //= product.check_box(:modality_id, "modality_id", nil)
+%label Modtype
+- @myproducts.to_a.uniq{|product| product.modtype_id}.each do |product|
+  = product.modtype_name
+  = check_box_tag("modtype_id", product.modtype_id, nil)  
+%label Manufacturer
+- @myproducts.current_scope.to_a.uniq{|product| product.manufacturer_id}.each do |product|
+  = product.manufacturer_name
+  = check_box_tag("manufacturer_id", product.manufacturer_id, nil)

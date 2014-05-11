@@ -30,6 +30,9 @@ $(function() {
 //    $('#products_search').serialize(), null, 'script');
 //    return false;
 //  });
+  $(document).on("change", "#productfiltersdropdown select", function () {
+    $('#productfiltersdropdown').submit
+  });
 //adding the products search submit function to have ajax on submit instead of searching in real-time
   $("#products_search").submit(function() {
     $.get(this.action, $(this).serialize(), null, "script");

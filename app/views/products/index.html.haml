@@ -19,7 +19,8 @@
     //= hidden_field_tag :manufacturer_id, params[:manufacturer_id]
     //= hidden_field_tag :modtype_id, params[:modtype]
     //= submit_tag "Filter"
-  #productfilters= render 'productfilters'
+  #productfiltersdropdown= render 'productfiltersdropdown'
+  //#productfilterscheckbox= render 'productfilterscheckbox'
   #products= render 'products'
 %br
 = link_to 'New Product', new_product_path

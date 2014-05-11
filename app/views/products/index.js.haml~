@@ -1,2 +1,3 @@
+$("#productfiltersdropdown").html("#{escape_javascript(render(:partial=>'productfiltersdropdown'))}");
 $("#products").html("#{escape_javascript(render(:partial=>'products'))}");
-$("#productfilters").html("#{escape_javascript(render(:partial=>'productfilters'))}");
+
