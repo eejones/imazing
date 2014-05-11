@@ -2,6 +2,18 @@
 
 %p
   %b Manufacturer:
+  = @product.manufacturer_name
+%p
+  %b Modality Type:
+  = @product.modtype_name
+%p
+  %b OverallCategory
+  = @product.overallcategory_name
+%p
+  %b Modality:
+  = @product.modality_name
+%p
+  %b Manufacturer:
   = @product.manufacturer.name
 %p
   %b Modality Type:
@@ -94,7 +106,12 @@
 %p
   %b Dentaltype:
   = @product.dentaltype
-= render "messages/form"
+- if user_signed_in?
+  = render "messages/form"
+-else
+  You must log in to send a message about this product
+  = link_to "Sign in", user_session_path
+%br
 //= link_to 'Send A message about this product', new_product_message_path(:product_id => @product.id)
 = link_to 'Edit', edit_product_path(@product)
 \|
