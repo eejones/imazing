@@ -21,6 +21,10 @@ Imazing::Application.routes.draw do
     resources :messages
   end
 
+  resources :products do 
+    get 'search'
+  end
+  
   resources :modtypemanufacturers, only: [:new, :create, :destroy]
 
   namespace :dynamic_select do

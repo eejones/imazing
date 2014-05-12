@@ -210,6 +210,9 @@ header div .headerrow4{
   }
 }  
 
+.searchform li{
+  width:auto;
+}
 ul.dropdown-menu{
   padding:0px;
   background-color:$lightbluebg;
@@ -294,6 +297,9 @@ header div .headerrow1{
   float:right;
 }
 
+.signedoutheader{
+  float:right;
+}
 
 /*Up and down arrows*/
 .triangle-base {

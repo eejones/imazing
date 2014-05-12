@@ -26,8 +26,7 @@ Imazing::Application.routes.draw do
   namespace :dynamic_select do
     get ':modality_id/modtypes', to: 'modtypes#indexfilter', as: 'modtypes'
     get ':modtype_id/manufacturers', to: 'manufacturers#indexfilter', as: 'manufacturers'
-    get 'modality_id/findmanufacturers', to: 'manufacturers#modalityfilter', as 'findmanufacturers'
-    get '
+ #   get 'modality_id/findmanufacturers', to: 'manufacturers#modalityfilter', as 'findmanufacturers'
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

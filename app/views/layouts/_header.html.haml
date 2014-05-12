@@ -31,3 +31,5 @@
         %li= link_to "Products", products_path
         %li{:style=>"border-right-width: 0px"}
           = link_to "Contact Us", '/Contact_Us'
+        %li.searchform{:style=>"width:auto; margin-top: 3px"}
+          = render :partial => "products/search"

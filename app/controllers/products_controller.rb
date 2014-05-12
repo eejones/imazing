@@ -98,6 +98,13 @@ class ProductsController < ApplicationController
     end
   end
 
+  def search
+    @products = Product.search params[:search]
+    respond_to do |format|
+      format.html { redirect_to products_url }
+      format.json { head :no_content }
+    end
+  end
 
   private
 
