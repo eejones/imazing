@@ -4,3 +4,5 @@
 jQuery ->
   $('#products_search input').autocomplete
     source: "/search_suggestions"
+  $("#search-form input").autocomplete
+    source: "/search_suggestions"
