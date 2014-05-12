@@ -219,7 +219,8 @@ header div .headerrow3{
   height:57px;
   margin-left: auto;
   margin-right:auto;
-  width:775px;
+  width:100%;
+  text-align:center;
   img{
     max-height:100%;
     float: left;
@@ -227,50 +228,25 @@ header div .headerrow3{
   span{
     max-height: 100%;
     float:right;
-    font-size:15px;
+    color: $offwhite;
+    font-size:14px;
     line-height: 15px;
-    color:$black;
-    margin-top:3px;
+    margin-top:5px;
     margin-bottom:0px;
+    margin-right:20px;
   }
-  .sideinfo{
-  max-height: 100%;
-  float:right;
-  padding-top: 2px;
-  padding-bottom: 2x;
-  padding-right: 5px;
-  padding-left: 5px;
-  padding-left-ltr-source: physical;
-  padding-left-rtl-source: physical;
-  padding-right-ltr-source: physical;
-  padding-right-rtl-source: physical;
-  margin-top:6px;
-  margin-bottom: auto;
-  margin-left: auto;
-  margin-right: auto;
-  background-color: $offwhite;
-  border-radius: 1px 1px 1px 1px;
-  p{
+  .centerquote{
+    float:left;
+    font-size:18px;
+    margin-top:20px;
+    margin-left:90px;
+    vertical-align:middle;
     text-align:left;
-    font-size: 18px;
-    }
-  span{
-    max-height: 100%;
-    float:right;
-    font-size:13px;
-    font-wight:normal;
-    line-height: 15px;
-    color:$bluedark;
-    margin-top:3px;
-    margin-bottom:3px;
-    }
-  }
-  h3{
-    font-size:33px;
-    color: $dbluetitletxt;
-    margin-bottom:15px;
+    width:auto;
+    color:$white;
   }
 }
+
 header div .headerrow2{
 /*  background-image: url("bgnavi.png");*/
 /*  background-repeat: repeat;*/
@@ -286,7 +262,8 @@ header div .headerrow1{
   height:auto;
   margin-left: auto;
   margin-right:auto;
-  width:930px;
+  width:100%;
+  background-color: $backgroundblue;
   img{
     height:50px;
     width:auto;
@@ -303,7 +280,21 @@ header div .headerrow1{
     margin-top:3px;
     margin-bottom:0px;
   }
+  a {
+    margin-left:5px;
+    color: $backgroundgray;
+    &:hover {
+      font-weight: normal;
+      background-color: $offwhite;
+    }
+  }
 }
+
+.signedinheader{
+  float:right;
+}
+
+
 /*Up and down arrows*/
 .triangle-base {
   content: '';

@@ -219,7 +219,7 @@ header div .headerrow3{
   height:57px;
   margin-left: auto;
   margin-right:auto;
-  width:1225px;
+  width:100%;
   text-align:center;
   img{
     max-height:100%;
@@ -231,14 +231,15 @@ header div .headerrow3{
     color: $offwhite;
     font-size:14px;
     line-height: 15px;
-    margin-top:15px;
+    margin-top:5px;
     margin-bottom:0px;
     margin-right:20px;
   }
   .centerquote{
     float:left;
     font-size:18px;
-    margin-top:25px;
+    margin-top:20px;
+    margin-left:90px;
     vertical-align:middle;
     text-align:left;
     width:auto;
@@ -261,7 +262,8 @@ header div .headerrow1{
   height:auto;
   margin-left: auto;
   margin-right:auto;
-  width:930px;
+  width:100%;
+  background-color: $backgroundblue;
   img{
     height:50px;
     width:auto;
@@ -278,7 +280,24 @@ header div .headerrow1{
     margin-top:3px;
     margin-bottom:0px;
   }
+  a {
+    margin-left:5px;
+    color: $backgroundgray;
+    &:hover {
+      font-weight: normal;
+      background-color: $offwhite;
+    }
+  }
 }
+
+.signedinheader{
+  float:right;
+}
+
+.signedoutheader{
+  float:right;
+}
+
 /*Up and down arrows*/
 .triangle-base {
   content: '';

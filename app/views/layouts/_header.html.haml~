@@ -3,29 +3,31 @@
     %div.headerrow1
       - if signed_in?
         = link_to(current_user.email, current_user)
+        .signedinheader
+          = link_to "users", users_path
+          = link_to "Settings", edit_user_registration_path(current_user)
+          = link_to "Sign out", destroy_user_session_path, :method => :delete
       - else
-        = link_to("User Information", root_path)
+        .signedoutheader
+          = link_to("User Information", root_path)
+          = link_to "Sign up", new_user_registration
+          = link_to "Sign in", user_session_path
     %div.headerrow2
     %div.headerrow3
-      = link_to image_tag("ebay.png", :alt=> "eBay logo"), root_path
+      = link_to image_tag("ebay.jpeg", :alt=> "eBay logo"), root_path
       .centerquote
-        Anyone can sell or service equipment.
+        Your business isn't just medical equipment.
         %b>
-          WE SHARE OUR KNOWLEDGE AND EXPERTISE.
+          YOUR BUSINESS IS IMAGING. SO IS OURS.
       %span
         Imazing Imaging Sales
         %br
-        999 Upside Down Way, Far Side, Moon 00001
+        999 Upside Down Way
+        %br
+        Far Side, Moon 00001
     %div.headerrow4
       %ul
         %li= link_to "Home", root_path
-        - if signed_in?
-          %li= link_to "users", users_path
-          %li= link_to "Products", products_path
-          %li= link_to "Settings", edit_user_registration_path(current_user)
-          %li= link_to "Sign out", destroy_user_session_path, :method => :delete
-        - else
-          %li= link_to "Sign in", user_session_path
+        %li= link_to "Products", products_path
         %li{:style=>"border-right-width: 0px"}
           = link_to "Contact Us", '/Contact_Us'
-
