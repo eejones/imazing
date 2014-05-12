@@ -2,13 +2,17 @@
 %html
   %head
     %title Imazing
-    = stylesheet_link_tag    "application", media: "all"
-    = javascript_include_tag "application"
+    = stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true
+    = javascript_include_tag "application", "data-turbolinks-track" => true
     = csrf_meta_tags
   %body
     = render 'layouts/header'
     %p.notice= notice
     %p.alert= alert
     %nav#primary-navigation.row
-      %div.container.fill
-        = yield
+      .centralunit
+        -if params[:action] == "index"
+          = yield
+        -else
+          %div.container.fill
+            = yield

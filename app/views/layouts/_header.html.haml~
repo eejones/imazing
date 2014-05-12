@@ -1,16 +1,31 @@
-%header{:class=>"navbar navbar-fixed-top navbar-inverse"}
-  %div.navbar-inner
-    %div.container
-      - if user_signed_in?
-        = link_to "Edit Registration", edit_user_registration_path
-      - else   
-        = link_to("user Information", root_path)
-      %nav
-        %ul{:class=>"nav pull-right"}
-          %li= link_to "Home", root_path
-          - if user_signed_in?
-            %li= link_to "users", users_path
-            %li= link_to "Settings", edit_user_registration_path(current_user)
-            %li= link_to "Sign out", destroy_user_session_path, :method => :delete
-          - else
-            %li= link_to "Sign in", user_session_path
+%header{:class=>"navbar navbar-inverse"}
+  .header
+    %div.headerrow1
+      - if signed_in?
+        = link_to(current_user.email, current_user)
+      - else
+        = link_to("User Information", root_path)
+    %div.headerrow2
+    %div.headerrow3
+      = link_to image_tag("ebay.png", :alt=> "eBay logo"), root_path
+      .centerquote
+        Anyone can sell or service equipment.
+        %b>
+          WE SHARE OUR KNOWLEDGE AND EXPERTISE.
+      %span
+        Imazing Imaging Sales
+        %br
+        999 Upside Down Way, Far Side, Moon 00001
+    %div.headerrow4
+      %ul
+        %li= link_to "Home", root_path
+        - if signed_in?
+          %li= link_to "users", users_path
+          %li= link_to "Products", products_path
+          %li= link_to "Settings", edit_user_registration_path(current_user)
+          %li= link_to "Sign out", destroy_user_session_path, :method => :delete
+        - else
+          %li= link_to "Sign in", user_session_path
+        %li{:style=>"border-right-width: 0px"}
+          = link_to "Contact Us", '/Contact_Us'
+

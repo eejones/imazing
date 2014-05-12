@@ -1,27 +1,15 @@
-%title Products
-%h1 Listing products
 = form_tag products_path, :method => 'get', :id => "products_search" do
-  = hidden_field_tag :direction, params[:direction]
-  = hidden_field_tag :sort, params[:sort]
-  %p
-    = text_field_tag :search, params[:search]
-    = submit_tag "Search", :name => nil
-    //%label Modality
-    //= @products.current_scope.count
-    //=@products.current_scope.first.modtype_name
-    //= select_tag(:modality_id, options_from_collection_for_select(@products.current_scope, "modality_id", "modality_name"), :include_blank => true )
-    //%label Modtype
-    //= select_tag(:modtype_id, options_from_collection_for_select(@products, "modtype_id", "modtype_name"), :include_blank => true )
-    //= select_tag(:modtype_id, options_from_collection_for_select(@products.current_scope, "modtype_id", "modtype_name"), :include_blank => true )
-    //%label Manufacturer
-    //= select_tag(:manufacturer_id, options_from_collection_for_select(@products, "manufacturer_id", "manufacturer_name"), :include_blank => true )
-    //= hidden_field_tag :modality_id, params[:modality_id]
-    //= hidden_field_tag :manufacturer_id, params[:manufacturer_id]
-    //= hidden_field_tag :modtype_id, params[:modtype]
-    //= submit_tag "Filter"
-  #productfiltersdropdown= render 'productfiltersdropdown'
-  //#productfilterscheckbox= render 'productfilterscheckbox'
-  #products= render 'products'
-%br
-= link_to 'New Product', new_product_path
-= debug(params) if Rails.env.development?
+  #productfiltersdropdown.leftsidebarsearch
+    = render 'productfiltersdropdown'
+  #indexview
+    %title Products
+    %h1 Listing products
+    = hidden_field_tag :direction, params[:direction]
+    = hidden_field_tag :sort, params[:sort]
+    %p
+      = text_field_tag :search, params[:search]
+      = submit_tag "Search", :name => nil
+    #products= render 'products'
+  %br
+  = link_to 'New Product', new_product_path
+  = debug(params) if Rails.env.development?

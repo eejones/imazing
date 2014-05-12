@@ -7,8 +7,12 @@
     = csrf_meta_tags
   %body
     = render 'layouts/header'
-    %p.notice= notice
-    %p.alert= alert
+    //%p.notice= notice
+    //%p.alert= alert
     %nav#primary-navigation.row
-      %div.container.fill
-        = yield
+      .centralunit
+        -if params[:action] == "index"
+          = yield
+        -else
+          %div.container.fill
+            = yield

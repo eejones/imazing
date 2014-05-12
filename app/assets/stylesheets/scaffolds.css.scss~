@@ -8,6 +8,17 @@ $blue: #0000FF;
 $bluelight: #1B94E0;
 $headblue: #3C5EFF;
 $backgroundblue: #B8D4F2;
+$solidred: #FF0000;
+$backgroundgray: #8B8271;
+$black: #000;
+$dbluetitletxt: #6769a7;
+$lightbluebg: #dcdcfe;
+$burntorangebg: #C05C18;
+$offwhite: #eeeeee;
+$lightbluebutton: #304A83;
+$midbluebg:#3A4887;
+$selectionbluebg: #7882B3;
+
 
 @mixin box_sizing {
   -moz-box-sizing: border-box; 
@@ -16,6 +27,16 @@ $backgroundblue: #B8D4F2;
 }
 
 
+
+html body {
+  min-height: 100%;
+  height:auto;
+  padding-top: 0px;
+  background-color: $backgroundgray;
+  background-position: center top;
+  font-family: arial, helvetica, sans-serif;
+  line-height: 18px;
+}
 
 body {
   background-color: #fff;
@@ -64,6 +85,225 @@ div {
   display: table;
 }
 
+/* header */
+
+header{
+  /*background-image: url("bgnavi.png");*/
+  /*background-repeat: repeat;*/
+  color: $burntorangebg;
+  position: fixed-top;
+  width: 95%;
+  margin-left: auto;
+  margin-right:auto;
+  height: 127px;
+  background-image: url("ebay.png");
+  background-size: 100%;
+  align: center;
+}
+
+header div .headerrow4{
+  background-color: $burntorangebg;
+/*  background-image: url("bgnavi.png"); */
+/*  background-repeat: repeat; */
+  height:37px;
+  margin-bottom:30px;
+  font-family: arial, helvetica, sans-serif;
+  ul{
+    margin-left: 0px;
+    margin-right:0px;
+    height:100%;
+    width:100%;
+    text-align:center;
+    margin-top:0px;
+    margin-bottom:0px;
+    line-height: auto;
+    background-color: $burntorangebg;
+    li{
+      display: inline;
+      width:185px;
+      float:left;
+      margin:0px;
+      height:100%;
+      list-style-image: none;
+      list-style-position: outside;
+      list-style-type: none;
+      border-right-color: rgb(127, 138, 158);
+      border-right-style: solid;
+      border-right-width: 1px;
+      border-right-height:100%;
+      &:hover{
+        background-image: none;
+        background-color: $midbluebg;
+      }
+     &:hover > ul.dropdown-menu {
+       display: block;
+       }
+    ul .dropdownformat{
+    color: $black;
+    text-color: $black;
+    background-color:$midbluebg; 
+    font-size:13px;
+    li{
+      height:100%;
+      margin:0px;
+      padding:-5px;
+      color: $black;
+      font-size:13px;
+      background-color:$midbluebg;
+      border-left: 1px solid $midbluebg;
+      border-bottom: 1px solid $midbluebg;
+      border-right: 1px solid $midbluebg;
+      a{
+        font-size:13px;
+        color:$offwhite; 
+        margin:0px;
+        padding:0px;
+      }
+      &:hover{
+        margin:0px;
+        padding:0px;
+        background-color: $selectionbluebg;
+        a{
+          font-size:13px;
+          margin:0px;
+          padding:0px;
+          color:$offwhite;
+          &:hover{
+            font-size:13px;
+            margin:0px;
+            padding:0px;
+            color:$offwhite;
+            background-color: $selectionbluebg;
+            background-image:none;
+          }
+      }
+    }
+  }
+}   
+
+      a{
+        color: $offwhite;
+        line-height: 45px;
+        font-size: 17px;
+        line-width: 185px;
+        text-align:center;
+        display: block;
+        margin: -5px 0px 0px 0px;
+        &:hover{
+          color: $white;
+        }
+      }
+    }
+  }
+  a{
+    font-family: arial, helvetica, sans-serif;
+    text-size:13px;
+    align:center;
+    color: $offwhite;
+    font-weight:bold;
+    margin-left: 14px;
+    margin-right: 14px;
+    &:hover{
+      color: $white;
+      text-decoration: none;
+      }
+  }
+}  
+
+ul.dropdown-menu{
+  padding:0px;
+  background-color:$lightbluebg;
+}
+
+header div .headerrow3{
+  height:57px;
+  margin-left: auto;
+  margin-right:auto;
+  width:775px;
+  img{
+    max-height:100%;
+    float: left;
+  }
+  span{
+    max-height: 100%;
+    float:right;
+    font-size:15px;
+    line-height: 15px;
+    color:$black;
+    margin-top:3px;
+    margin-bottom:0px;
+  }
+  .sideinfo{
+  max-height: 100%;
+  float:right;
+  padding-top: 2px;
+  padding-bottom: 2x;
+  padding-right: 5px;
+  padding-left: 5px;
+  padding-left-ltr-source: physical;
+  padding-left-rtl-source: physical;
+  padding-right-ltr-source: physical;
+  padding-right-rtl-source: physical;
+  margin-top:6px;
+  margin-bottom: auto;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: $offwhite;
+  border-radius: 1px 1px 1px 1px;
+  p{
+    text-align:left;
+    font-size: 18px;
+    }
+  span{
+    max-height: 100%;
+    float:right;
+    font-size:13px;
+    font-wight:normal;
+    line-height: 15px;
+    color:$bluedark;
+    margin-top:3px;
+    margin-bottom:3px;
+    }
+  }
+  h3{
+    font-size:33px;
+    color: $dbluetitletxt;
+    margin-bottom:15px;
+  }
+}
+header div .headerrow2{
+/*  background-image: url("bgnavi.png");*/
+/*  background-repeat: repeat;*/
+  background-color: $burntorangebg;
+  height:15px;
+}
+
+headlist ul{
+  display: inline;
+}
+
+header div .headerrow1{
+  height:auto;
+  margin-left: auto;
+  margin-right:auto;
+  width:930px;
+  img{
+    height:50px;
+    width:auto;
+    max-height:100%;
+    float: left;
+    background-color:$backgroundgray;
+  }
+  span{
+    max-height: 100%;
+    float:right;
+    font-size:15px;
+    line-height: 15px;
+    color:$black;
+    margin-top:3px;
+    margin-bottom:0px;
+  }
+}
 /*Up and down arrows*/
 .triangle-base {
   content: '';
@@ -104,6 +344,7 @@ div {
   border-top: 7px;
   border-color: #428bca;
 }
+
 
 /* Sort Products */
 
@@ -192,11 +433,6 @@ div {
   }
 }
 
-/* Products search section */
-form#products_search p input{
-  position: initial;
-}
-
 
 /* Auto-complete section when searching */
 ul.ui-autocomplete {
@@ -222,8 +458,128 @@ ul.ui-autocomplete {
   }
 }
 
+
 .ui-helper-hidden-accessible {
-    position: inherit;
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+}
+
+
+
+/*product index setup */
+.centralunit{
+  width: 90%;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-right: 40px;
+  padding-left: 40px;
+  padding-left-ltr-source: physical;
+  padding-left-rtl-source: physical;
+  padding-right-ltr-source: physical;
+  padding-right-rtl-source: physical;
+  margin-top:auto;
+  margin-bottom: auto;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: $backgroundblue;
+  border-radius: 6px 6px 6px 6px;
+  min-height:100%;
+  h1{
+    font-size:45px;
+    text-align: left;
+    margin: 0px;
+  }
+  h2{
+    display: inline-block;
+    font-size: 30px;
+    margin: 10px 0px 5px 0px;
+  }
+  p{
+    text-align:left;
+    font-size: 18px;
+  }
+  h3{
+    font-size:33px;
+    color: $dbluetitletxt;
+    margin-bottom:15px;
+  }
+}
+
+/* Left Sidebar Setup */
+.leftsidebarsearch {
+  width:auto;
+  display:inline-block;
+  vertical-align: middle;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-right: 10px;
+  padding-left: 10px;
+  padding-left-ltr-source: physical;
+  padding-left-rtl-source: physical;
+  padding-right-ltr-source: physical;
+  padding-right-rtl-source: physical;
+  margin-top:10px;
+  margin-bottom: 10px;
+  margin-left: 10px;
+  margin-right: 40px;
+  background-color: $lightbluebg;
+  border-radius: 4px 4px 4px 4px;
+  min-height:100%;
+  h1{
+    font-size:30px;
+    text-align: left;
+    margin: 0px;
+  }
+  h2{
+    display: inline-block;
+    font-size: 20px;
+    margin: 6px 0px 3px 0px;
+  }
+  p{
+    text-align:left;
+    font-size: 12px;
+  }
+  h3{
+    font-size:22px;
+    color: $dbluetitletxt;
+    margin-bottom:10px;
+  }
+}
+
+#indexview {
+  width: 60%;
+  display:inline-block;
+  vertical-align: top;
+  height:100%;
+  min-height:100%;
+  width: auto;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-right: 10px;
+  padding-left: 10px;
+  padding-left-ltr-source: physical;
+  padding-left-rtl-source: physical;
+  padding-right-ltr-source: physical;
+  padding-right-rtl-source: physical;
+  margin-top:10px;
+  margin-bottom: 0px;
+  margin-left: 10px;
+  margin-right: 0px;
+  background-color: $lightbluebg;
+  border-radius: 4px 4px 4px 4px;
+  h1 {
+    margin-bottom:10px;
+  }
+  img{
+    height:300px;
+    width: auto;
+  }
 }
 
 #error_explanation {
