@@ -30,11 +30,17 @@ $(function() {
 //    $('#products_search').serialize(), null, 'script');
 //    return false;
 //  });
-  $('#productfiltersdropdown select').change(function () {
-    $.get($('#products_search').attr('action'), 
+  $(document).on("change","#productfiltersdropdown select", function (e) {
+    $.get($('#products_search').attr('action'),
     $('#products_search').serialize(), null, 'script');
     return false;
   });
+
+//  $('#productfiltersdropdown select').change(function () {
+//    $.get($('#products_search').attr('action'),
+//    $('#products_search').serialize(), null, 'script');
+//    return false;
+//  });
 //  $(document).on("change", "#productfiltersdropdown select", function () {
 //    $('#productfiltersdropdown').submit
 //  });
