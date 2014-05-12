@@ -1,9 +1,8 @@
 = hidden_field_tag :direction, params[:direction]
 = hidden_field_tag :sort, params[:sort]
 %table.sorted
-  = @products.current_scope.count
-  =@products.current_scope.first.modtype_name
   %tr
+    %th
     %th= sortable "modtype_name", "modtype"
     %th= sortable "overallcategory_name", "overallcategory"
     %th= sortable "manufacturer_name", "manufacturer"
@@ -42,6 +41,7 @@
     //= link_to
   - @products.each do |product|
     %tr
+      %td= image_tag product.image.thumb('40X30').url if product.image_stored?
       %td= link_to product.modtype.name, product
       %td= product.overallcategory.name
       %td= product.manufacturer.name

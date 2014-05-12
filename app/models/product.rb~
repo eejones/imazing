@@ -1,6 +1,9 @@
 class Product < ActiveRecord::Base
   include UsersHelper
   include Filterable
+  require 'dragonfly'
+
+  dragonfly_accessor :photo
 
   has_many :messages
   belongs_to :transaction

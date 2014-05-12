@@ -27,9 +27,7 @@
         Far Side, Moon 00001
     %div.headerrow4
       %ul
-        %li= link_to "Home", root_path
-        %li= link_to "Products", products_path
-        %li{:style=>"border-right-width: 0px"}
-          = link_to "Contact Us", '/Contact_Us'
-        %li.searchform{:style=>"width:auto; margin-top: 4px"}
+        %li= link_to "Browse Products", products_path
+        %li.searchform{:style=>"width:auto; margin-top: 3px; border-right-width: 0px"}
           = render :partial => "products/search"
+

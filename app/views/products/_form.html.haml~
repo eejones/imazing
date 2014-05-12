@@ -14,21 +14,15 @@
     = f.collection_select(:modality_id, Modality.all, :id, :name, options = {:include_blank => true}, html_options = { data: {dynamic_selectable_url: dynamic_select_modtypes_path(':modality_id'), dynamic_selectable_target: '#product_modtype_id'}})
     // :include_blank can also be 'true' to just have a blank field instead of a string
     // :onchange => ("$('#modtypecreate').submit()"))
-    //= select_tag(:modality, options_for_select(Modality.all.map {|modality| [modality.name, modality.id]}, @modality_id), :onchange => 'form.submit()')
-    //The onchange piece is needed to update it looks like
-    //= select_tag(:modality, options_for_select(Modality.all.map{|modality| [modality.name, modality.id]}, @modality_id), :onchange => 'form.submit()')
   .field
     = f.label :modtype
     = f.collection_select(:modtype_id, @product.modality.try(:modtypes) || [], :id, :name, options = {:include_blank => true}, html_options = { data: {dynamic_selectable_url: dynamic_select_manufacturers_path(':modtype_id'), dynamic_selectable_target: '#product_manufacturer_id'}})
-    //= f.collection_select(:modtype_id, Modtype.all, :id, :name, options = {:include_blank => 'None'}, html_options = {:onchange => "alert('hello')"})
-    //= f.collection_select(:modtype_id, Modtype.all, :id, :name, options = {:include_blank => true}, html_options = {:onchange=> "#{link_to_remote(:url => {:controller => 'products', :action => 'update_manufacturers' }, :with=>"'modtype_id='+value")}"})
-    //= select_tag(:modtype, options_for_select(Modtype.where(:modality_id== :modality).map{|modt| [modt.name, modt.id]}, @modtype))
-    //= select_tag(:modtype, options_for_select(Modtype.where(:modality_id== :modality).map{|modt| [modt.name, modt.id]}, @modtype))
   .field
     = f.label :manufacturer
     = f.collection_select(:manufacturer_id, @product.modtype.try(:manufacturers) || [], :id, :name, :include_blank => true)
-    //= f.collection_select(:manufacturer_id, Manufacturer.all, :id, :name)
-    //= f.collection_select(:manufacturer_id, @manufacturers, :id, :name, options = (Manufacturer.where(:modtype_id== :modtype).map {|manuf| [manuf.name, manuf.id]}))
+  .field
+    = f.label :image
+    = f.file_field :image
   .field
     = f.label :serial
     = f.text_field :serial

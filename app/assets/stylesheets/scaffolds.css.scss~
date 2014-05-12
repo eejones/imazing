@@ -92,7 +92,7 @@ header{
   /*background-repeat: repeat;*/
   color: $burntorangebg;
   position: fixed-top;
-  width: 95%;
+  width: 1200px;
   margin-left: auto;
   margin-right:auto;
   height: 127px;
@@ -133,7 +133,13 @@ header div .headerrow4{
       border-right-height:100%;
       &:hover{
         background-image: none;
-        background-color: $midbluebg;
+        background-color: none;
+      }
+      a {
+        margin: 0px;
+        padding: -5px 1px 2px 5px;
+        height: 100%;
+        width: 100%;
       }
      &:hover > ul.dropdown-menu {
        display: block;
@@ -147,7 +153,6 @@ header div .headerrow4{
       height:100%;
       margin:0px;
       padding:-5px;
-      color: $black;
       font-size:13px;
       background-color:$midbluebg;
       border-left: 1px solid $midbluebg;
@@ -162,7 +167,7 @@ header div .headerrow4{
       &:hover{
         margin:0px;
         padding:0px;
-        background-color: $selectionbluebg;
+        color: $selectionbluebg;
         a{
           font-size:13px;
           margin:0px;
@@ -173,14 +178,13 @@ header div .headerrow4{
             margin:0px;
             padding:0px;
             color:$offwhite;
-            background-color: $selectionbluebg;
+            background-color: none;
             background-image:none;
           }
+        }
       }
     }
-  }
-}   
-
+  }   
       a{
         color: $offwhite;
         line-height: 45px;
@@ -188,7 +192,8 @@ header div .headerrow4{
         line-width: 185px;
         text-align:center;
         display: block;
-        margin: -5px 0px 0px 0px;
+        margin: 0px;
+        padding: -5px 1px 2px 5px;
         &:hover{
           color: $white;
         }
@@ -210,9 +215,6 @@ header div .headerrow4{
   }
 }  
 
-.searchform li{
-  width:auto;
-}
 ul.dropdown-menu{
   padding:0px;
   background-color:$lightbluebg;
@@ -471,7 +473,7 @@ ul.ui-autocomplete {
 
 /*product index setup */
 .centralunit{
-  width: 90%;
+  width: 1200px;
   padding-top: 10px;
   padding-bottom: 10px;
   padding-right: 40px;

@@ -87,6 +87,15 @@ gem 'i18n_country_select'
 gem 'populator'
 gem 'faker'
 
+#using dragonfly to manage uploaded files and images
+gem 'dragonfly', '~> 1.0.4'
+
+#enabling rack cache in production.rb needs this(done for dragonfly):
+gem 'rack-cache'
+
+#install rmagick to use imagemagick for dragonfly stuff
+gem 'rmagick', '2.13.2'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
 

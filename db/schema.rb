@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140510204351) do
+ActiveRecord::Schema.define(version: 20140512202710) do
 
   create_table "manufacturers", force: true do |t|
     t.string   "name"
@@ -113,6 +113,8 @@ ActiveRecord::Schema.define(version: 20140510204351) do
     t.string   "modtype_name"
     t.string   "manufacturer_name"
     t.string   "overallcategory_name"
+    t.string   "image_uid"
+    t.string   "image_name"
   end
 
   add_index "products", ["manufacturer_id"], name: "index_products_on_manufacturer_id"

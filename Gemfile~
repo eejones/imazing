@@ -31,7 +31,7 @@ gem 'turbolinks'
 gem 'jquery-turbolinks'
 
 #adding has_scope for filtering in products search
-#gem 'has_scope'
+gem 'has_scope'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.2'
@@ -86,6 +86,12 @@ gem 'i18n_country_select'
 #using populator and/or faker to create fake data
 gem 'populator'
 gem 'faker'
+
+#using dragonfly to manage uploaded files and images
+gem 'dragonfly', '~> 1.0.4'
+
+#enabling rack cache in production.rb needs this(done for dragonfly):
+gem 'rack-cache'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
