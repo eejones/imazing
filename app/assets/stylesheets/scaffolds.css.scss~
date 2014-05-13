@@ -137,7 +137,7 @@ header div .headerrow4{
       }
       a {
         margin: 0px;
-        padding: -5px 1px 2px 5px;
+        padding: 0px;
         height: 100%;
         width: 100%;
       }

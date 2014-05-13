@@ -41,7 +41,7 @@
     //= link_to
   - @products.each do |product|
     %tr
-      %td= image_tag product.image.thumb('40X30').url if product.image_stored?
+      %td= image_tag product.image.thumb('40x30').url if product.image_stored?
       %td= link_to product.modtype.name, product
       %td= product.overallcategory.name
       %td= product.manufacturer.name
