@@ -17,6 +17,42 @@
 //= require turbolinks
 //= require_tree .
 
+  $(document).ready(function(){
+     if($('#product_modality_id option:selected').val()){
+// replacing line to hide instead of disable
+//        $("#product_modtype_id").attr('disabled','disabled');
+          $("#modtypecreate").css('display','block')
+     }
+     else{
+        $("#modtypecreate").css('display','none')            
+     }
+
+     $('#modalitycreate').change(function(){
+        if($("#product_modality_id option:selected").val() != ""){
+          $("#modtypecreate").css('display','block')
+        }
+        else{
+          $("#modtypecreate").css('display','none')
+        }
+     })
+
+     if($('#modtypecreate').val() == ""){
+        $("#manufacturercreate").css('display','none')            
+     }
+     else{
+          $("#manufacturercreate").css('display','block')
+     }
+
+     $('#modtypecreate').change(function(){
+        if($(this).val() != ""){
+          $("#manufacturercreate").css('display','none')
+        }
+        else{
+          $("#manufacturercreate").css('display','block')
+        }
+     })
+  });
+
 $('select[data-dynamic-selectable-url][data-dynamic-selectable-target]').dynamicSelectable();
 
 $(function() {
@@ -30,12 +66,17 @@ $(function() {
 //    $('#products_search').serialize(), null, 'script');
 //    return false;
 //  });
-
-  $('#productfiltersdropdown select').change(function () {
-    $.get($('#products_search').attr('action'), 
+  $(document).on("change","#productfiltersdropdown select", function (e) {
+    $.get($('#products_search').attr('action'),
     $('#products_search').serialize(), null, 'script');
     return false;
   });
+
+//  $('#productfiltersdropdown select').change(function () {
+//    $.get($('#products_search').attr('action'),
+//    $('#products_search').serialize(), null, 'script');
+//    return false;
+//  });
 //  $(document).on("change", "#productfiltersdropdown select", function () {
 //    $('#productfiltersdropdown').submit
 //  });

@@ -17,6 +17,41 @@
 //= require turbolinks
 //= require_tree .
 
+  $(document).ready(function(){
+     if($('#product_modality_id option:selected').val()){
+// replacing line to hide instead of disable
+//        $("#product_modtype_id").attr('disabled','disabled');
+          $("#modtypecreate").css('display','block')
+     }
+     else{
+        $("#modtypecreate").css('display','none')            
+     }
+
+     $('#modalitycreate').change(function(){
+        if($("#product_modality_id option:selected").val()){
+          $("#modtypecreate").css('display','block')
+        }
+        else{
+          $("#modtypecreate").css('display','none')
+        }
+     })
+     if($('#product_modtype_id option:selected').val()){
+          $("#manufacturercreate").css('display','block')
+     }
+     else{
+        $("#manufacturercreate").css('display','none')            
+     }
+
+     $('#modtypecreate').change(function(){
+        if($("#product_modtype_id option:selected").val()){
+          $("#manufacturercreate").css('display','block')
+        }
+        else{
+          $("#manufacturercreate").css('display','none')
+        }
+     })
+  });
+
 $('select[data-dynamic-selectable-url][data-dynamic-selectable-target]').dynamicSelectable();
 
 $(function() {
