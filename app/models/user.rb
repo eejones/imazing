@@ -11,6 +11,7 @@ class User < ActiveRecord::Base
   has_many :products
   has_many :transactions
   has_many :messages
+  
 
   has_many :touser_id, class_name: 'Messages', :foreign_key => :touser_id
   has_many :fromuser_id, class_name: 'Messages', :foreign_key => :fromuser_id

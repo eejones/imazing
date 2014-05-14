@@ -52,6 +52,11 @@ class ProductsController < ApplicationController
     @product.modtype_name = @product.modtype.name
     @product.manufacturer_name = @product.manufacturer.name
     @product.overallcategory_name = @product.overallcategory.name
+    unless params[:images].nil?
+        params[:images].each do |image|
+        @product.product_images.create(:image => image)
+      end
+    end
     respond_to do |format|
       if @product.save
         format.html { redirect_to @product, notice: 'Product was successfully created.' }
@@ -67,6 +72,13 @@ class ProductsController < ApplicationController
   # PATCH/PUT /products/1.json
   def update
     respond_to do |format|
+      unless params[:images].nil?
+          params[:images].each do |image|
+          @product.product_images.create(:image => image)
+#          @product.product_images << ProductImage.create(:image => image)
+#           @product.product_images.build
+        end
+      end
       if @product.update(product_params)
         @product.modality_name = @product.modality.name
         @product.modtype_name = @product.modtype.name
@@ -127,7 +139,7 @@ class ProductsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def product_params
-      params.require(:product).permit(:manufacturer_id, :modtype_id, :modality_id, :whattype, :serial, :condition, :country, :region, :prefremovalmethod, :price, :message_id, :warranty, :rating, :listedon, :listeduntil, :autorenew, :availability, :availabilitydate, :user, :year, :dealertype, :hospitaltype, :orthopedictype, :imagingcentertype, :drofficetype, :urgenttype, :pain, :Managementtype, :veterinarytype, :chiropractictype, :podiatrytype, :painmanagementtype, :dentaltype, :transaction_id, :user_id, :overallcategory_id, :manufacturer_name, :modality_name, :modtype_name, :transaction_name, :user_name, :overallcategory_name, :image)
+      params.require(:product).permit(:manufacturer_id, :modtype_id, :modality_id, :whattype, :serial, :condition, :country, :region, :prefremovalmethod, :price, :message_id, :warranty, :rating, :listedon, :listeduntil, :autorenew, :availability, :availabilitydate, :user, :year, :dealertype, :hospitaltype, :orthopedictype, :imagingcentertype, :drofficetype, :urgenttype, :pain, :Managementtype, :veterinarytype, :chiropractictype, :podiatrytype, :painmanagementtype, :dentaltype, :transaction_id, :user_id, :overallcategory_id, :manufacturer_name, :modality_name, :modtype_name, :transaction_name, :user_name, :overallcategory_name, :product_images, :image, :product_images_attributes)
     end
 
 end

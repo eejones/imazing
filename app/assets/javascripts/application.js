@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery.ui.all
 //= require jquery_ujs
+//= require jquery.remotipart
 //= require jquery.turbolinks
 //= require turbolinks
 //= require_tree .
@@ -51,6 +52,11 @@
         }
      })
   });
+
+$(function preview(this) {
+  document.getElementById("product_product_image").src =this.value;
+  return;
+});
 
 $('select[data-dynamic-selectable-url][data-dynamic-selectable-target]').dynamicSelectable();
 

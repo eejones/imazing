@@ -1,0 +1,23 @@
+%h1 Listing photos
+
+%table
+  %tr
+    %th Product
+    %th Image name
+    %th Image uid
+    %th
+    %th
+    %th
+
+  - @photos.each do |photo|
+    %tr
+      %td= photo.product
+      %td= photo.image_name
+      %td= photo.image_uid
+      %td= link_to 'Show', photo
+      %td= link_to 'Edit', edit_photo_path(photo)
+      %td= link_to 'Destroy', photo, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Photo', new_photo_path

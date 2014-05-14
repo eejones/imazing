@@ -1,0 +1,7 @@
+%div#newcreated
+  = f.file_field :product_image, :name => 'images[]', :multiple => true, :accept => 'image/png,image/gif,image/jpeg'
+
+function preview(this) {
+  document.getElementById("product_product_image").src =this.value;
+  return;
+}

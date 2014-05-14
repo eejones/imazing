@@ -9,20 +9,33 @@
   #overallcategorycreate
     = f.label :overallcategory
     = f.collection_select(:overallcategory_id, Overallcategory.all, :id, :name, options = {:include_blank => true})
-  .modalitycreate
+  #modalitycreate.modalitycreate
     = f.label :modality
     = f.collection_select(:modality_id, Modality.all, :id, :name, options = {:include_blank => true}, html_options = { data: {dynamic_selectable_url: dynamic_select_modtypes_path(':modality_id'), dynamic_selectable_target: '#product_modtype_id'}})
     // :include_blank can also be 'true' to just have a blank field instead of a string
     // :onchange => ("$('#modtypecreate').submit()"))
-  .field
+  #modtypecreate.modtypecreate
     = f.label :modtype
     = f.collection_select(:modtype_id, @product.modality.try(:modtypes) || [], :id, :name, options = {:include_blank => true}, html_options = { data: {dynamic_selectable_url: dynamic_select_manufacturers_path(':modtype_id'), dynamic_selectable_target: '#product_manufacturer_id'}})
-  .field
+  #manufacturercreate.manufacturercreate
     = f.label :manufacturer
     = f.collection_select(:manufacturer_id, @product.modtype.try(:manufacturers) || [], :id, :name, :include_blank => true)
   .field
-    = f.label :image
-    = f.file_field :image
+    = f.label :primary_photo
+    //- if  f.try(:primary_photo) && f.primary_photo.image.image_stored?
+    //  = f.primary_photo.image.thumb('120x90').url
+    %div#newcreated
+      = render "product_images/form", :f => f
+      = f.file_field :product_image, :name => 'images[]', :multiple => true
+    //- if f.try(:photos) && f.photos.any{|photo| photo.image_stored? }
+    //- if f.try(:product_images) && f.product_images.any?{|photo| photo.image_stored? }
+    //  #photos_showing
+    - if @product.try(:product_images)
+      #photos_showing
+        %ul= render :partial => @product.product_images, :locals => { :list => true }
+    //= f.fields_for :product_images do |builder|
+    //  = builder.file_field :image, :multiple => true
+    //= render "photos/form"
   .field
     = f.label :serial
     = f.text_field :serial

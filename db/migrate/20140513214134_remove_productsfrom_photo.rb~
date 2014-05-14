@@ -1,0 +1,4 @@
+class RemoveProductsfromPhoto < ActiveRecord::Migration
+  def change
+  end
+end

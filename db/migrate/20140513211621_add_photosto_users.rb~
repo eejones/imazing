@@ -1,0 +1,5 @@
+class AddPhotostoUsers < ActiveRecord::Migration
+  def change
+    add_reference :products, :photo, index:true
+  end
+end

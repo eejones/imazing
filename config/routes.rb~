@@ -15,12 +15,19 @@ Imazing::Application.routes.draw do
 
   devise_for :users
 #not sure if i should have added users resources
-  resources :users
+  resources :users do
+    resources :photos
+  end
 
   resources :products do 
     resources :messages
+    resources :photos
   end
 
+  resources :products do 
+    get 'search'
+  end
+  
   resources :modtypemanufacturers, only: [:new, :create, :destroy]
 
   namespace :dynamic_select do

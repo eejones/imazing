@@ -1,0 +1,4 @@
+/* add the created photo */
+$("#photos_showing").html("#{escape_javascript(render(:partial=>@product.photos))}");
+/* create new blank form */
+$("#newcreated").html("#{escape_javascript(render(:partial=>'photos/form'))}")

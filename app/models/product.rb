@@ -1,9 +1,6 @@
 class Product < ActiveRecord::Base
   include UsersHelper
   include Filterable
-  require 'dragonfly'
-
-  dragonfly_accessor :image
 
   has_many :messages
   belongs_to :transaction
@@ -14,6 +11,13 @@ class Product < ActiveRecord::Base
   belongs_to :manufacturer
 
   belongs_to :overallcategory
+
+
+  has_many :product_images, :class_name => "ProductImage"
+  
+  has_one :primary_photo, :class_name=> "ProductImage"
+
+  accepts_nested_attributes_for :product_images, :allow_destroy => true
 
   validates_presence_of :modality, :modtype, :manufacturer, :overallcategory, :year
 

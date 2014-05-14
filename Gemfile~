@@ -93,6 +93,15 @@ gem 'dragonfly', '~> 1.0.4'
 #enabling rack cache in production.rb needs this(done for dragonfly):
 gem 'rack-cache'
 
+#install rmagick to use imagemagick for dragonfly stuff
+gem 'rmagick', '2.13.2'
+
+#using jquery file upload instead of dragonfly
+#gem "jquery-fileupload-rails"
+
+#Using paperclip to upload files now
+gem "paperclip", "~> 4.1"
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
 

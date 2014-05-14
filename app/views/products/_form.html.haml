@@ -21,8 +21,20 @@
     = f.label :manufacturer
     = f.collection_select(:manufacturer_id, @product.modtype.try(:manufacturers) || [], :id, :name, :include_blank => true)
   .field
-    = f.label :image
-    = f.file_field :image
+    = f.label :primary_photo
+    //- if  f.try(:primary_photo) && f.primary_photo.image.image_stored?
+    //  = f.primary_photo.image.thumb('120x90').url
+    %div#newcreated
+      = render "product_images/form", :f => f
+    //- if f.try(:photos) && f.photos.any{|photo| photo.image_stored? }
+    //- if f.try(:product_images) && f.product_images.any?{|photo| photo.image_stored? }
+    //  #photos_showing
+    - if @product.try(:product_images)
+      #photos_showing
+        %ul= render :partial => @product.product_images, :locals => { :list => true }
+    //= f.fields_for :product_images do |builder|
+    //  = builder.file_field :image, :multiple => true
+    //= render "photos/form"
   .field
     = f.label :serial
     = f.text_field :serial

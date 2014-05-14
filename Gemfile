@@ -96,6 +96,15 @@ gem 'rack-cache'
 #install rmagick to use imagemagick for dragonfly stuff
 gem 'rmagick', '2.13.2'
 
+#install to use ajaxupload to preview uploaded images
+gem 'remotipart', '~> 1.2'
+
+#using jquery file upload instead of dragonfly
+#gem "jquery-fileupload-rails"
+
+#Using paperclip to upload files now
+gem "paperclip", "~> 4.1"
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
 

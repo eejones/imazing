@@ -1,0 +1,15 @@
+%p#notice= notice
+
+%p
+  %b Product:
+  = @photo.product
+%p
+  %b Image name:
+  = @photo.image_name
+%p
+  %b Image uid:
+  = @photo.image_uid
+
+= link_to 'Edit', edit_photo_path(@photo)
+\|
+= link_to 'Back', photos_path

@@ -25,6 +25,29 @@
   %b Modality:
   = @product.modality.name
 %p
+  %b All Photos:
+  - if @product.try(:product_images)
+    - @product.product_images.each do |photo|
+      - if photo.image_stored?
+        = image_tag photo.image.thumb('120x90').url
+  #photos_showing
+    %ul= render :partial => @product.product_images, :locals => { :list => true }
+%p
+  %b NEW PHOTO
+  #newcreated
+  //  = render "product_images/form" 
+%p
+  %b PHOTO COUNT
+  = @product.product_images.count
+%p
+  %b List Photos
+  = @product.product_images.each do |p|
+    = p.id
+%p
+  %b Primary Photo:
+  //- if @product.try(:primary_photo) && @product.primary_photo.image_stored?
+  //  = image_tag @product.primary_photo.image.thumb('120x90').url
+  //= @product.primary_photo
 %p
   %b Serial:
   = @product.serial
@@ -109,7 +132,7 @@
 - if user_signed_in?
   = render "messages/form"
 -else
-  You must log in to send a message about this product
+  You must sign in to send a message about this product
   = link_to "Sign in", user_session_path
 %br
 //= link_to 'Send A message about this product', new_product_message_path(:product_id => @product.id)

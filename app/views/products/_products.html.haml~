@@ -41,7 +41,13 @@
     //= link_to
   - @products.each do |product|
     %tr
-      %td= image_tag product.image.thumb('40x30').url if product.image_stored?
+      //- if product.try(:primary_photo) && product.primary_photo.image_stored?
+      //  %td= image_tag product.primary_photo.image.thumb('120x90').url
+      - if product.try(:photos) && product.photos.any?{|photo| photo.image_stored? }
+        - product.photos.first do |photo|
+          - if photo.image_stored?
+            = photo.image.thumb('120x90').url
+            = photo.id
       %td= link_to product.modtype.name, product
       %td= product.overallcategory.name
       %td= product.manufacturer.name

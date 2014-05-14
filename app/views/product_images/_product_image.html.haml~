@@ -1,0 +1,3 @@
+= div_for product_image do
+  = image_tag product_image.image.thumb('120x90').url if product_image.image_stored?
+  = product_image.id

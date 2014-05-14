@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery.ui.all
 //= require jquery_ujs
+//= require jquery.remotipart
 //= require jquery.turbolinks
 //= require turbolinks
 //= require_tree .
@@ -28,27 +29,26 @@
      }
 
      $('#modalitycreate').change(function(){
-        if($("#product_modality_id option:selected").val() != ""){
+        if($("#product_modality_id option:selected").val()){
           $("#modtypecreate").css('display','block')
         }
         else{
           $("#modtypecreate").css('display','none')
         }
      })
-
-     if($('#modtypecreate').val() == ""){
-        $("#manufacturercreate").css('display','none')            
+     if($('#product_modtype_id option:selected').val()){
+          $("#manufacturercreate").css('display','block')
      }
      else{
-          $("#manufacturercreate").css('display','block')
+        $("#manufacturercreate").css('display','none')            
      }
 
      $('#modtypecreate').change(function(){
-        if($(this).val() != ""){
-          $("#manufacturercreate").css('display','none')
+        if($("#product_modtype_id option:selected").val()){
+          $("#manufacturercreate").css('display','block')
         }
         else{
-          $("#manufacturercreate").css('display','block')
+          $("#manufacturercreate").css('display','none')
         }
      })
   });

@@ -1,0 +1,4 @@
+class AddImageabletoProducts < ActiveRecord::Migration
+  def change
+  end
+end

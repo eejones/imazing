@@ -1,0 +1,4 @@
+class AddImagebletoPhotos < ActiveRecord::Migration
+  def change
+  end
+end
