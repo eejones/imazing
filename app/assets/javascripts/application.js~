@@ -53,6 +53,11 @@
      })
   });
 
+$(function preview(this) {
+  document.getElementById("product_product_image").src =this.value;
+  return;
+});
+
 $('select[data-dynamic-selectable-url][data-dynamic-selectable-target]').dynamicSelectable();
 
 $(function() {
@@ -66,7 +71,7 @@ $(function() {
 //    $('#products_search').serialize(), null, 'script');
 //    return false;
 //  });
-  $(document).on("change","#productfiltersdropdown select", function (e) {
+  $(document).on("change","#productfiltersdropdown select option", function (e) {
     $.get($('#products_search').attr('action'),
     $('#products_search').serialize(), null, 'script');
     return false;
