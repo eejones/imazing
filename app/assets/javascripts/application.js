@@ -53,10 +53,10 @@
      })
   });
 
-$(function preview(this) {
-  document.getElementById("product_product_image").src =this.value;
-  return;
-});
+//$(function preview(this) {
+//  document.getElementById("product_product_image").src =this.value;
+//  return;
+//});
 
 $('select[data-dynamic-selectable-url][data-dynamic-selectable-target]').dynamicSelectable();
 
