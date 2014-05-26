@@ -21,10 +21,139 @@
     = f.collection_select(:manufacturer_id, @product.modtype.try(:manufacturers) || [], :id, :name, :include_blank => true)
   .field
     = f.label :primary_photo
-    #new_image_creation
-      //images[] returned to the product as an array. We use file_field_tag since images is not @product's attribute
+    //#new_image_creation
+    //beginning of photo generation
+    //images[] returned to the product as an array. We use file_field_tag since images is not @product's attribute
+    #fileupload
+      / The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload
+      .row.fileupload-buttonbar
+        .span7
+          / The fileinput-button span is used to style the file input field as button
+          %span.btn.btn-success.fileinput-button
+            %i.icon-plus.icon-white
+            %span Add files...
+            = file_field_tag "images[]", type: :file, multiple: true
+            //= f.file_field :image
+          %button.btn.btn-primary.start{type: "submit"}
+            %i.icon-upload.icon-white
+            %span Start upload
+          %button.btn.btn-warning.cancel{type: "reset"}
+            %i.icon-ban-circle.icon-white
+            %span Cancel upload
+          %button.btn.btn-danger.delete{type: "button"}
+            %i.icon-trash.icon-white
+            %span Delete
+          %input.toggle{type: "checkbox"}/
+        .span5
+          / The global progress bar
+          .progress.progress-success.progress-striped.active.fade
+            .bar{style: "width:0%;"}
+      / The loading indicator is shown during image processing
+      .fileupload-loading
+      %br/
+      / The table listing the files available for upload/download
+      %table.table.table-striped
+        %tbody.files{"data-target" => "#modal-gallery", "data-toggle" => "modal-gallery"}
+    :javascript
+      var fileUploadErrors = {
+        maxFileSize: 'File is too big',
+        minFileSize: 'File is too small',
+        acceptFileTypes: 'Filetype not allowed',
+        maxNumberOfFiles: 'Max number of files exceeded',
+        uploadedBytes: 'Uploaded bytes exceed file size',
+        emptyResult: 'Empty file upload result'
+      };
+    / The template to display files available for upload
+    %script#template-upload{type: "text/x-tmpl"}
+      :cdata
+        {% for (var i=0, file; file=o.files[i]; i++) { %}
+        <tr class="template-upload fade">
+        <td class="preview"><span class="fade"></span></td>
+        <td class="name"><span>{%=file.name%}</span></td>
+        <td class="size"><span>{%=o.formatFileSize(file.size)%}</span></td>
+        {% if (file.error) { %}
+        <td class="error" colspan="2"><span class="label label-important">{%=locale.fileupload.error%}</span> {%=locale.fileupload.errors[file.error] || file.error%}</td>
+        {% } else if (o.files.valid && !i) { %}
+        <td>
+        <div class="progress progress-success progress-striped active"><div class="bar" style="width:0%;"></div></div>
+        </td>
+        <td class="start">{% if (!o.options.autoUpload) { %}
+        <button class="btn btn-primary">
+        <i class="icon-upload icon-white"></i>
+        <span>{%=locale.fileupload.start%}</span>
+        </button>
+        {% } %}</td>
+        {% } else { %}
+        <td colspan="2"></td>
+        {% } %}
+        <td class="cancel">{% if (!i) { %}
+        <button class="btn btn-warning">
+        <i class="icon-ban-circle icon-white"></i>
+        <span>{%=locale.fileupload.cancel%}</span>
+        </button>
+        {% } %}</td>
+        </tr>
+        {% } %}
+    / The template to display files available for download
+    %script#template-download{type: "text/x-tmpl"}
+      :cdata
+        {% for (var i=0, file; file=o.files[i]; i++) { %}
+        <tr class="template-download fade">
+        {% if (file.error) { %}
+        <td></td>
+        <td class="name"><span>{%=file.name%}</span></td>
+        <td class="size"><span>{%=o.formatFileSize(file.size)%}</span></td>
+        <td class="error" colspan="2"><span class="label label-important">{%=locale.fileupload.error%}</span> {%=locale.fileupload.errors[file.error] || file.error%}</td>
+        {% } else { %}
+        <td class="preview">{% if (file.thumbnail_url) { %}
+        <a href="{%=file.url%}" title="{%=file.name%}" rel="gallery" download="{%=file.name%}"><img src="{%=file.thumbnail_url%}"></a>
+        {% } %}</td>
+        <td class="name">
+        <a href="{%=file.url%}" title="{%=file.name%}" rel="{%=file.thumbnail_url&&'gallery'%}" download="{%=file.name%}">{%=file.name%}</a>
+        </td>
+        <td class="size"><span>{%=o.formatFileSize(file.size)%}</span></td>
+        <td colspan="2"></td>
+        {% } %}
+        <td class="delete">
+        <button class="btn btn-danger" data-type="{%=file.delete_type%}" data-url="{%=file.delete_url%}">
+        <i class="icon-trash icon-white"></i>
+        <span>{%=locale.fileupload.destroy%}</span>
+        </button>
+        <input type="checkbox" name="delete" value="1">
+        </td>
+        </tr>
+        {% } %}
+    / The jQuery UI widget factory, can be omitted if jQuery UI is already included
+    = javascript_include_tag 'jquery.ui.widget.js'
+    / The Templates and Load Image plugins are included for the FileUpload user interface
+    %script{src: "http://blueimp.github.com/JavaScript-Templates/tmpl.min.js"}
+    %script{src: "http://blueimp.github.com/JavaScript-Load-Image/load-image.min.js"}
+    / The Iframe Transport is required for browsers without support for XHR file uploads
+    = javascript_include_tag 'jquery.iframe-transport.js'
+    = javascript_include_tag 'jquery.fileupload.js'
+    = javascript_include_tag 'jquery.fileupload-ui.js'
+    / add include_tag js files to config.assets.precompile in ...environments/production.rb if you have it in vendor/ assets
+    %script{charset: "utf-8", type: "text/javascript"}
+      :cdata
+        $(function () {
+        \// Initialize the jQuery File Upload widget:
+        $('#fileupload').fileupload();
+        \//
+        \// Load existing files:
+        $.getJSON($('#fileupload').prop('action'), function (files) {
+        var fu = $('#fileupload').data('blueimp-fileupload'),
+        template;
+        fu._adjustMaxNumberOfFiles(-files.length);
+        template = fu._renderDownload(files)
+        \.appendTo($('#fileupload .files'));
+        \// Force reflow:
+        fu._reflow = fu._transition && template.length &&
+        template[0].offsetWidth;
+        template.addClass('in');
+        $('#loading').remove();
+        });
       //= render "product_images/uploadimage"
-      = file_field_tag "images[]", type: :file, multiple: true
+      //= file_field_tag "images[]", type: :file, multiple: true
     #current_images
     - if @product.try(:product_images)
       #photos_showing
