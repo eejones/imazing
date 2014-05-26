@@ -1,0 +1,4 @@
+class RemoveColumnsFromProductImages < ActiveRecord::Migration
+  def change
+  end
+end

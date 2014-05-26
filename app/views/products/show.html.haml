@@ -32,7 +32,8 @@
 %p
   %b NEW PHOTO
   #newcreated
-  //  = render "product_images/form" 
+    = link_to 'Add Photo', new_product_image_path
+    //= render "product_images/form" 
 %p
   %b PHOTO COUNT
   = @product.product_images.count

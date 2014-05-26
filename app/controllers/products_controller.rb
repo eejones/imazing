@@ -52,13 +52,16 @@ class ProductsController < ApplicationController
     @product.modtype_name = @product.modtype.name
     @product.manufacturer_name = @product.manufacturer.name
     @product.overallcategory_name = @product.overallcategory.name
-    unless params[:images].nil?
-        params[:images].each do |image|
-        @product.product_images.create(:image => image)
-      end
-    end
+    #leaving 'if params[:images]' should work like 'if params[:images].exists?'
+    #authorize @product have this if using cancan
     respond_to do |format|
       if @product.save
+        #to handle multiple images
+        if params[:images]
+          params[:images].each do |image|
+            @product.product_images.create(:image => image)
+          end
+        end
         format.html { redirect_to @product, notice: 'Product was successfully created.' }
         format.json { render action: 'show', status: :created, location: @product }
       else
@@ -71,15 +74,21 @@ class ProductsController < ApplicationController
   # PATCH/PUT /products/1
   # PATCH/PUT /products/1.json
   def update
+    #authorize @product use this if using cancan
     respond_to do |format|
-      unless params[:images].nil?
-          params[:images].each do |image|
-          @product.product_images.create(:image => image)
+#      unless params[:images].nil?
+#          params[:images].each do |image|
+#          @product.product_images.create(:image => image)
 #          @product.product_images << ProductImage.create(:image => image)
 #           @product.product_images.build
-        end
-      end
+#        end
+#      end
       if @product.update(product_params)
+        if params[:images]
+          params[:images].each do |image|
+            @product.product_images.create(:image => image)
+          end
+        end
         @product.modality_name = @product.modality.name
         @product.modtype_name = @product.modtype.name
         @product.manufacturer_name = @product.manufacturer.name

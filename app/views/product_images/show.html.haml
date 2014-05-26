@@ -1,11 +1,11 @@
 %p#notice= notice
 
 %p
-  %b Image uid:
-  = @product_image.image_uid
+  %b Image
+  = image_tag @product_image.image.url(:medium_display).to_s
 %p
   %b Image name:
-  = @product_image.image_name
+  = @product_image.name
 %p
   %b Product:
   = @product_image.product

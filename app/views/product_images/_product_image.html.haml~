@@ -1,3 +1,13 @@
 = div_for product_image do
-  = image_tag product_image.image.thumb('120x90').url if product_image.image_stored?
-  = product_image.id
+  - if product_image.image
+    %b Image
+    = image_tag product_image.image.url(:medium_display).to_s
+    %b Image name:
+    = product_image.name
+    %p
+      %b Product:
+      = product_image.product
+    %p
+      %b Isprimary:
+      = product_image.isprimary
+    = link_to 'Remove Photo', product_image, :method => :delete, :data => {:confirm => 'Are you sure?' }

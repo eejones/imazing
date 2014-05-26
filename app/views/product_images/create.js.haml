@@ -1,4 +1,8 @@
-/* add the created photo */
+/* add the created photo
 $("#photos_showing").html("#{escape_javascript(render(:partial=>@product.product_images))}");
-/* create new blank form */
-$("#newcreated").html("#{escape_javascript(render(:partial=>'product_images/form'))}")
+#create new blank form
+$("#newcreated").html("#{escape_javascript(render(:partial=>'product_images/form'))}")*/
+- if @product_image.new_record?
+  alert("Failed to upload product_image: #{j @product_image.errors.full_messages.join(', ').html_safe}");
+- else
+  $("#product_images").append("#{j render(@product_image)}");

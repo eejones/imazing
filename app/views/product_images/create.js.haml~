@@ -1,4 +1,8 @@
-/* add the created photo */
+/* add the created photo
 $("#photos_showing").html("#{escape_javascript(render(:partial=>@product.product_images))}");
-/* create new blank form */
-$("#newcreated").html("#{escape_javascript(render(:partial=>'photos/form'))}")
+#create new blank form
+$("#newcreated").html("#{escape_javascript(render(:partial=>'product_images/form'))}")*/
+- if @painting.new_record?
+  alert("Failed to upload painting: #{j @painting.errors.full_messages.join(', ').html_safe}");
+- else
+  $("#paintings").append("#{j render(@painting)}");

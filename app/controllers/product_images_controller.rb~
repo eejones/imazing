@@ -25,7 +25,8 @@ class ProductImagesController < ApplicationController
   # POST /product_images.json
   def create
     @product_image = ProductImage.new(product_image_params)
-
+    @product_image.save
+=begin
     respond_to do |format|
       if @product_image.save
         format.html { redirect_to @product_image, notice: 'Product image was successfully created.' }
@@ -36,6 +37,7 @@ class ProductImagesController < ApplicationController
       end
     end
   end
+=end
 
   # PATCH/PUT /product_images/1
   # PATCH/PUT /product_images/1.json
@@ -69,6 +71,6 @@ class ProductImagesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def product_image_params
-      params.require(:product_image).permit(:image_uid, :image_name, :product_id, :isprimary)
+      params.require(:product_image).permit(:image, :name, :product_id, :isprimary, :remote_image_url)
     end
 end

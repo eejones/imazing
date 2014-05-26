@@ -1,11 +1,10 @@
-= form_for @product do |f|
+= form_for @product, :html => {:multipart => true} do |f|
   - if @product.errors.any?
     #error_explanation
       %h2= "#{pluralize(@product.errors.count, "error")} prohibited this product from being saved:"
       %ul
         - @product.errors.full_messages.each do |msg|
           %li= msg
-
   #overallcategorycreate
     = f.label :overallcategory
     = f.collection_select(:overallcategory_id, Overallcategory.all, :id, :name, options = {:include_blank => true})
@@ -22,13 +21,11 @@
     = f.collection_select(:manufacturer_id, @product.modtype.try(:manufacturers) || [], :id, :name, :include_blank => true)
   .field
     = f.label :primary_photo
-    //- if  f.try(:primary_photo) && f.primary_photo.image.image_stored?
-    //  = f.primary_photo.image.thumb('120x90').url
-    %div#newcreated
-      = render "product_images/form", :f => f
-    //- if f.try(:photos) && f.photos.any{|photo| photo.image_stored? }
-    //- if f.try(:product_images) && f.product_images.any?{|photo| photo.image_stored? }
-    //  #photos_showing
+    #new_image_creation
+      //images[] returned to the product as an array. We use file_field_tag since images is not @product's attribute
+      //= render "product_images/uploadimage"
+      = file_field_tag "images[]", type: :file, multiple: true
+    #current_images
     - if @product.try(:product_images)
       #photos_showing
         %ul= render :partial => @product.product_images, :locals => { :list => true }
@@ -73,7 +70,8 @@
     = f.date_select :availabilitydate, {:start_year => Time.now.year, :end_year => Time.now.year + 1}
   .field
     = f.label :year
-    = f.date_select :year, {:start_year => Time.now.year, :end_year => Time.now.year - 40, :discard_day => true, :discard_month => true}, :selected => @product.year
+    //commenting out date field since it is giving an error of "undefined method 'change' for 2006:Fixnum" I can't find where this is being called(outside of javascript, but nothing should be looking at this field there...)
+    //= f.date_select :year, {:start_year => Time.now.year - 40, :end_year => Time.now.year, :discard_day => true, :discard_month => true}, :selected => @product.year
   %div.usertype
     %h2 What type of User are you?
     %ul

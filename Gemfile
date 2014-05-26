@@ -99,11 +99,14 @@ gem 'rmagick', '2.13.2'
 #install to use ajaxupload to preview uploaded images
 gem 'remotipart', '~> 1.2'
 
-#using jquery file upload instead of dragonfly
-#gem "jquery-fileupload-rails"
+#using jquery file upload to allow for previewing and multiple image uploading with carrierwave
+gem "jquery-fileupload-rails"
 
 #Using paperclip to upload files now
 gem "paperclip", "~> 4.1"
+
+#using carrierwave instead of paperclip or dragonfly to use with jquery-file-upload
+gem "carrierwave"
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'

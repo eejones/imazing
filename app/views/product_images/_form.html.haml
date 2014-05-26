@@ -1,2 +1,11 @@
-%div#newcreated
-  = f.file_field :product_image, :name => 'images[]', :multiple => true, :accept => 'image/png,image/gif,image/jpeg'
+= form_for @product_image, :html => {:multipart => true} do |f|
+  //= f.file_field :product_image, :name => 'images[]', :multiple => true, :accept => 'image/png,image/gif,image/jpeg'
+  = f.hidden_field :product_id
+  = f.label :name
+  = f.text_field :name
+  %br
+  = f.file_field :image, :multiple => true, :name => "product_image[image]"
+  %p
+    = f.label :remote_image_url, "or image URL"
+    = f.text_field :remote_image_url
+  = f.submit

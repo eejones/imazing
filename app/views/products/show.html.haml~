@@ -27,15 +27,13 @@
 %p
   %b All Photos:
   - if @product.try(:product_images)
-    - @product.product_images.each do |photo|
-      - if photo.image_stored?
-        = image_tag photo.image.thumb('120x90').url
-  #photos_showing
-    %ul= render :partial => @product.product_images, :locals => { :list => true }
+    #photos_showing
+      %ul= render :partial => @product.product_images, :locals => { :list => true }
 %p
   %b NEW PHOTO
   #newcreated
-  //  = render "product_images/form" 
+    = link_to "Add Photo", new_product_image_path
+    //= render "product_images/form" 
 %p
   %b PHOTO COUNT
   = @product.product_images.count
