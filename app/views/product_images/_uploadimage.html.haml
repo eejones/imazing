@@ -1,5 +1,4 @@
-%h2= t('product_images.title')
-= form_for images[], :html => { :id => "fileupload"  } do |f|
+#fileupload
   / The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload
   .row.fileupload-buttonbar
     .span7
@@ -7,7 +6,7 @@
       %span.btn.btn-success.fileinput-button
         %i.icon-plus.icon-white
         %span Add files...
-        //= file_field_tag "images[]", type: :file, multiple: true
+        = file_field_tag "images[]", type: :file, multiple: true
         = f.file_field :image
       %button.btn.btn-primary.start{type: "submit"}
         %i.icon-upload.icon-white

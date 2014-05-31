@@ -6,5 +6,5 @@ jQuery ->
     source: "/search_suggestions"
   $("#search-form input").autocomplete
     source: "/search_suggestions"
-  $('#new_image_creation').fileupload()
-     dataType: "script"
+  #$('#new_image_creation').fileupload()
+  #   dataType: "script"
