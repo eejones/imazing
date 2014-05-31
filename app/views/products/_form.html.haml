@@ -32,8 +32,8 @@
           %span.btn.btn-success.fileinput-button
             %i.icon-plus.icon-white
             %span Add files...
-            = file_field_tag "images[]", type: :file, multiple: true
-            //= f.file_field :image
+            //= file_field_tag "images[]", type: :file, multiple: true
+            = f.file_field :image
           %button.btn.btn-primary.start{type: "submit"}
             %i.icon-upload.icon-white
             %span Start upload

@@ -18,8 +18,6 @@
 //= require jquery-fileupload
 //= require turbolinks
 //= require_tree .
-//= require angular
-//= require angular-resource
 
   $(document).ready(function(){
      if($('#product_modality_id option:selected').val()){
