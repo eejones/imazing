@@ -5,9 +5,7 @@ class ProductImagesController < ApplicationController
   # GET /product_images.json
   def index
     @product_images = ProductImage.all
-    render :json => @product_images.collect { |p| p.to_jq_upload }.to_json
   end
-
 
   # GET /product_images/1
   # GET /product_images/1.json
@@ -27,21 +25,7 @@ class ProductImagesController < ApplicationController
   # POST /product_images.json
   def create
     @product_image = ProductImage.new(product_image_params)
-    if @product_image.save
-      respond_to do |format|
-        format.html {  
-          render :json => [@product_image.to_jq_upload].to_json, 
-          :content_type => 'text/html',
-          :layout => false
-        }
-        format.json {  
-          render :json => [@product_image.to_jq_upload].to_json           
-        }
-      end
-    else 
-      render :json => [{:error => "custom_failure"}], :status => 304
-    end
-  end
+    @product_image.save
 =begin
     respond_to do |format|
       if @product_image.save
@@ -53,6 +37,7 @@ class ProductImagesController < ApplicationController
       end
     end
 =end
+  end
 
   # PATCH/PUT /product_images/1
   # PATCH/PUT /product_images/1.json
@@ -71,9 +56,11 @@ class ProductImagesController < ApplicationController
   # DELETE /product_images/1
   # DELETE /product_images/1.json
   def destroy
-    @product_image = Product_image.find(params[:id])
     @product_image.destroy
-    render :json => true
+    respond_to do |format|
+      format.html { redirect_to product_images_url }
+      format.json { head :no_content }
+    end
   end
 
   private

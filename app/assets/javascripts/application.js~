@@ -13,13 +13,10 @@
 //= require jquery
 //= require jquery.ui.all
 //= require jquery_ujs
-//= require jquery.remotipart
-//= require jquery.turbolinks
 //= require jquery-fileupload
+//= require jquery.turbolinks
 //= require turbolinks
 //= require_tree .
-//= require angular
-//= require angular-resource
 
   $(document).ready(function(){
      if($('#product_modality_id option:selected').val()){

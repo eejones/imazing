@@ -109,7 +109,10 @@ gem "paperclip", "~> 4.1"
 gem "carrierwave"
 
 #use angularjs
-gem 'angularjs-rails'
+#gem 'angularjs-rails'
+
+#using transloadit for preview
+#gem "transloadit-rails"
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'

@@ -23,6 +23,8 @@ Imazing::Application.routes.draw do
     resources :messages
   end
 
+    resources :uploads
+
   resources :products do 
     get 'search'
   end

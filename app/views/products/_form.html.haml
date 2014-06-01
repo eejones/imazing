@@ -21,19 +21,16 @@
     = f.collection_select(:manufacturer_id, @product.modtype.try(:manufacturers) || [], :id, :name, :include_blank => true)
   .field
     = f.label :primary_photo
-    //#new_image_creation
-    //beginning of photo generation
-    //images[] returned to the product as an array. We use file_field_tag since images is not @product's attribute
-    = javascript_include_tag 'jquery.iframe-transport.js'
-    = javascript_include_tag 'jquery.fileupload.js'
-    = javascript_include_tag 'jquery.fileupload-ui.js'
-    = render 'product_images/uploadimage'
-    //= render "product_images/uploadimage"
-    //= file_field_tag "images[]", type: :file, multiple: true
+    = render :partial => 'uploads/whatindex', :remote => true
+    //= render :partial => @product.uploads, :locals => { :list => true }
+    #new_image_creation
+      //images[] returned to the product as an array. We use file_field_tag since images is not @product's attribute
+      //= render "product_images/uploadimage"
+      = file_field_tag "images[]", type: :file, multiple: true
     #current_images
-    //- if @product.try(:product_images)
-    //  #photos_showing
-    //    %ul= render :partial => @product.product_images, :locals => { :list => true }
+    - if @product.try(:product_images)
+      #photos_showing
+        %ul= render :partial => @product.product_images, :locals => { :list => true }
     //= f.fields_for :product_images do |builder|
     //  = builder.file_field :image, :multiple => true
     //= render "photos/form"

@@ -1,4 +1,6 @@
 Imazing::Application.routes.draw do
+  resources :product_images
+
   resources :search_suggestions
 
   resources :searches
@@ -15,13 +17,14 @@ Imazing::Application.routes.draw do
 
   devise_for :users
 #not sure if i should have added users resources
-  resources :users do
-    resources :photos
-  end
+  resources :users
 
   resources :products do 
     resources :messages
-    resources :photos
+  end
+
+  resources :products do 
+    resources :uploads
   end
 
   resources :products do 

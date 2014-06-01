@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140526023033) do
+ActiveRecord::Schema.define(version: 20140601014137) do
 
   create_table "manufacturers", force: true do |t|
     t.string   "name"
@@ -188,6 +188,16 @@ ActiveRecord::Schema.define(version: 20140526023033) do
   end
 
   add_index "transactions", ["product_id"], name: "index_transactions_on_product_id"
+
+  create_table "uploads", force: true do |t|
+    t.integer  "product_id"
+    t.string   "upload_file_name"
+    t.string   "upload_content_type"
+    t.integer  "upload_file_size"
+    t.datetime "upload_updated_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false

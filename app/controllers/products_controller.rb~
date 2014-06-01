@@ -53,7 +53,7 @@ class ProductsController < ApplicationController
     @product.manufacturer_name = @product.manufacturer.name
     @product.overallcategory_name = @product.overallcategory.name
     #leaving 'if params[:images]' should work like 'if params[:images].exists?'
-    authorize @product
+    #authorize @product have this if using cancan
     respond_to do |format|
       if @product.save
         #to handle multiple images
@@ -74,7 +74,7 @@ class ProductsController < ApplicationController
   # PATCH/PUT /products/1
   # PATCH/PUT /products/1.json
   def update
-    authorize @product
+    #authorize @product use this if using cancan
     respond_to do |format|
 #      unless params[:images].nil?
 #          params[:images].each do |image|

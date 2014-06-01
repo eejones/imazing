@@ -1,42 +1,42 @@
-%h2= t('product_images.title')
-= form_for @product.product_image.new, :html => { :multipart => true, :id => "fileupload"  } do |f|
-  / The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload
-  .row.fileupload-buttonbar
-    .span7
-      / The fileinput-button span is used to style the file input field as button
-      %span.btn.btn-success.fileinput-button
-        %i.icon-plus.icon-white
-        %span Add files...
-        //= file_field_tag "images[]", type: :file, multiple: true
-        = f.file_field :image
-      %button.btn.btn-primary.start{type: "submit"}
-        %i.icon-upload.icon-white
-        %span Start upload
-      %button.btn.btn-warning.cancel{type: "reset"}
-        %i.icon-ban-circle.icon-white
-        %span Cancel upload
-      %button.btn.btn-danger.delete{type: "button"}
-        %i.icon-trash.icon-white
-        %span Delete
-      %input.toggle{type: "checkbox"}/
-    .span5
-      / The global progress bar
-      .progress.progress-success.progress-striped.active.fade
-        .bar{style: "width:0%;"}
-  / The loading indicator is shown during image processing
-  .fileupload-loading
-  %br/
-  / The table listing the files available for upload/download
-  %table.table.table-striped
-    %tbody.files{"data-target" => "#modal-gallery", "data-toggle" => "modal-gallery"}
+.container
+  %h2 Upload file
+  = form_for @product.uploads.new, :html => { :multipart => true, :id => "fileupload"  }
+    / The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload
+    .row.fileupload-buttonbar
+      .span7
+        / The fileinput-button span is used to style the file input field as button
+        %span.btn.btn-success.fileinput-button
+          %i.icon-plus.icon-white
+          %span Add files...
+          = f.file_field :upload
+        %button.btn.btn-primary.start{type: "submit"}
+          %i.icon-upload.icon-white
+          %span Start upload
+        %button.btn.btn-warning.cancel{type: "reset"}
+          %i.icon-ban-circle.icon-white
+          %span Cancel upload
+        %button.btn.btn-danger.delete{type: "button"}
+          %i.icon-trash.icon-white
+          %span Delete
+        %input.toggle{type: "checkbox"}/
+      .span5
+        / The global progress bar
+        .progress.progress-success.progress-striped.active.fade
+          .bar{style: "width:0%;"}
+    / The loading indicator is shown during image processing
+    .fileupload-loading
+    %br/
+    / The table listing the files available for upload/download
+    %table.table.table-striped
+      %tbody.files{"data-target" => "#modal-gallery", "data-toggle" => "modal-gallery"}
 :javascript
   var fileUploadErrors = {
-    maxFileSize: 'File is too big',
-    minFileSize: 'File is too small',
-    acceptFileTypes: 'Filetype not allowed',
-    maxNumberOfFiles: 'Max number of files exceeded',
-    uploadedBytes: 'Uploaded bytes exceed file size',
-    emptyResult: 'Empty file upload result'
+  maxFileSize: 'File is too big',
+  minFileSize: 'File is too small',
+  acceptFileTypes: 'Filetype not allowed',
+  maxNumberOfFiles: 'Max number of files exceeded',
+  uploadedBytes: 'Uploaded bytes exceed file size',
+  emptyResult: 'Empty file upload result'
   };
 / The template to display files available for upload
 %script#template-upload{type: "text/x-tmpl"}
@@ -98,16 +98,6 @@
     </td>
     </tr>
     {% } %}
-/ The jQuery UI widget factory, can be omitted if jQuery UI is already included
-= javascript_include_tag 'jquery.ui.widget.js'
-/ The Templates and Load Image plugins are included for the FileUpload user interface
-%script{src: "http://blueimp.github.com/JavaScript-Templates/tmpl.min.js"}
-%script{src: "http://blueimp.github.com/JavaScript-Load-Image/load-image.min.js"}
-/ The Iframe Transport is required for browsers without support for XHR file uploads
-= javascript_include_tag 'jquery.iframe-transport.js'
-= javascript_include_tag 'jquery.fileupload.js'
-= javascript_include_tag 'jquery.fileupload-ui.js'
-/ add include_tag js files to config.assets.precompile in ...environments/production.rb if you have it in vendor/ assets
 %script{charset: "utf-8", type: "text/javascript"}
   :cdata
     $(function () {
@@ -116,9 +106,10 @@
     \//
     \// Load existing files:
     $.getJSON($('#fileupload').prop('action'), function (files) {
-    var fu = $('#fileupload').data('blueimp-fileupload'),
+    var fu = $('#fileupload').data('blueimpFileupload'),
     template;
     fu._adjustMaxNumberOfFiles(-files.length);
+    console.log(files);
     template = fu._renderDownload(files)
     \.appendTo($('#fileupload .files'));
     \// Force reflow:
