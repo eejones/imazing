@@ -21,7 +21,7 @@
         %span.btn.btn-success.fileinput-button
           %i.glyphicon.glyphicon-plus.glyphicon-white
           = succeed "Select" do
-            %input.form-control{multiple: "multiple", name: "product[uploads_attributes][][upload]", type: "file"}/
+            %input.form-control{multiple: "multiple", name: "product[uploads_attributes][upload]", type: "file"}/
         %button#startbutton.btn.btn-primary.start{type: "submit"}
           %i.glyphicon.glyphicon-upload.glyphicon-white
           %span OK

@@ -148,7 +148,7 @@ class ProductsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def product_params
-      params.require(:product).permit(:manufacturer_id, :modtype_id, :modality_id, :whattype, :serial, :condition, :country, :region, :prefremovalmethod, :price, :message_id, :warranty, :rating, :listedon, :listeduntil, :autorenew, :availability, :availabilitydate, :user, :year, :dealertype, :hospitaltype, :orthopedictype, :imagingcentertype, :drofficetype, :urgenttype, :pain, :Managementtype, :veterinarytype, :chiropractictype, :podiatrytype, :painmanagementtype, :dentaltype, :transaction_id, :user_id, :overallcategory_id, :manufacturer_name, :modality_name, :modtype_name, :transaction_name, :user_name, :overallcategory_name, :product_images, :image, :product_images_attributes)
+      params.require(:product).permit(:manufacturer_id, :modtype_id, :modality_id, :whattype, :serial, :condition, :country, :region, :prefremovalmethod, :price, :message_id, :warranty, :rating, :listedon, :listeduntil, :autorenew, :availability, :availabilitydate, :user, :year, :dealertype, :hospitaltype, :orthopedictype, :imagingcentertype, :drofficetype, :urgenttype, :pain, :Managementtype, :veterinarytype, :chiropractictype, :podiatrytype, :painmanagementtype, :dentaltype, :transaction_id, :user_id, :overallcategory_id, :manufacturer_name, :modality_name, :modtype_name, :transaction_name, :user_name, :overallcategory_name, :product_images, :image, :product_images_attributes, uploads_attributes: [:upload])
     end
 
 end

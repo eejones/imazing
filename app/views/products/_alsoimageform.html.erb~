@@ -15,24 +15,144 @@
     </div>
   <% end %>
 <div class="input-group">
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :model %><br>
-    <%= f.text_field :model %>
-  </div>
-  <div class="field">
-    <%= f.label :price %><br>
-    <%= f.number_field :price %>
-  </div>
+<div id="overallcategorycreate">
+  <%= f.label :overallcategory %>
+  <%= f.collection_select(:overallcategory_id, Overallcategory.all, :id, :name, options = {:include_blank => true}) %>
+</div>
+<div class="modalitycreate" id="modalitycreate">
+  <%= f.label :modality %>
+  <%= f.collection_select(:modality_id, Modality.all, :id, :name, options = {:include_blank => true}, html_options = { data: {dynamic_selectable_url: dynamic_select_modtypes_path(':modality_id'), dynamic_selectable_target: '#product_modtype_id'}}) %>
+  <!--/ :include_blank can also be 'true' to just have a blank field instead of a string
+  -->
+  <!--/ :onchange => ("$('#modtypecreate').submit()"))
+  -->
+</div>
+<div class="modtypecreate" id="modtypecreate">
+  <%= f.label :modtype %>
+  <%= f.collection_select(:modtype_id, @product.modality.try(:modtypes) || [], :id, :name, options = {:include_blank => true}, html_options = { data: {dynamic_selectable_url: dynamic_select_manufacturers_path(':modtype_id'), dynamic_selectable_target: '#product_manufacturer_id'}}) %>
+</div>
+<div class="manufacturercreate" id="manufacturercreate">
+  <%= f.label :manufacturer %>
+  <%= f.collection_select(:manufacturer_id, @product.modtype.try(:manufacturers) || [], :id, :name, :include_blank => true) %>
+  <div class="field"></div>
+  <%= f.label :serial %>
+  <%= f.text_field :serial %>
+</div>
+<div class="field">
+  <%= f.label :condition %>
+  <%= f.text_field :condition %>
+</div>
+<div class="field">
+  <%= f.label :country %>
+  <%= f.country_code_select(:country, [[ 'United States', 'United States' ], [ 'Canada', 'Canada' ]]) %>
+</div>
+<div class="field">
+  <%= f.label :region %>
+  <%= f.text_field :region %>
+</div>
+<div class="field">
+  <%= f.label :prefremovalmethod %>
+  <%= f.text_field :prefremovalmethod %>
+</div>
+<div class="field">
+  <%= f.label :price %>
+  <%= f.text_field :price %>
+</div>
+<div class="field">
+  <%= f.label :warranty %>
+  <%= f.text_field :warranty %>
+</div>
+<div class="field">
+  <%= f.label :listedon %>
+  <%= f.date_select :listedon, {:start_year => Time.now.year, :end_year => Time.now.year + 1}, :selected => Time.now %>
+</div>
+<div class="field">
+  <%= f.label :listeduntil %>
+  <%= f.date_select :listeduntil, {:start_year => Time.now.year, :end_year => Time.now.year + 1} %>
+</div>
+<div class="field">
+  <%= f.label :autorenew %>
+  <%= f.check_box :autorenew %>
+</div>
+<div class="field">
+  <%= f.label :availability %>
+  <%= f.text_field :availability %>
+</div>
+<div class="field">
+  <%= f.label :availabilitydate %>
+  <%= f.date_select :availabilitydate, {:start_year => Time.now.year, :end_year => Time.now.year + 1} %>
+</div>
+<div class="field">
+  <%= f.label :year %>
+  <!--/commenting out date field since it is giving an error of "undefined method 'change' for 2006:Fixnum" I can't find where this is being called(outside of javascript, but nothing should be looking at this field there...)
+  -->
+  <%= f.date_select :year, {:start_year => Time.now.year - 40, :end_year => Time.now.year, :discard_day => true, :discard_month => true}, :selected => @product.year %>
+</div>
+<div class="usertype">
+  <h2>What type of User are you?</h2>
+  <ul>
+    <li>
+      Dealer/Broker
+      <%= f.check_box :dealertype %>
+    </li>
+    <li class="divider"></li>
+    <li>
+      Hospital
+      <%= f.check_box :hospitaltype %>
+    </li>
+    <li class="divider"></li>
+    <li>
+      Orthopedic
+      <%= f.check_box :orthopedictype %>
+    </li>
+    <li class="divider"></li>
+    <li>
+      Imaging Center
+      <%= f.check_box :imagingcentertype %>
+    </li>
+    <li class="divider"></li>
+    <li>
+      Dr Office
+      <%= f.check_box :drofficetype %>
+    </li>
+    <li class="divider"></li>
+    <li>
+      Urgent Care
+      <%= f.check_box :urgenttype %>
+    </li>
+    <li class="divider"></li>
+    <li>
+      Pain Management
+      <%= f.check_box :painmanagementtype %>
+    </li>
+    <li class="divider"></li>
+    <li>
+      Vertinary
+      <%= f.check_box :veterinarytype %>
+    </li>
+    <li class="divider"></li>
+    <li>
+      Chiropractic
+      <%= f.check_box :chiropractictype %>
+    </li>
+    <li class="divider"></li>
+    <li>
+      Podiatry
+      <%= f.check_box :podiatrytype %>
+    </li>
+    <li class="divider"></li>
+    <li>
+      Dental
+      <%= f.check_box :dentaltype %>
+    </li>
+  </ul>
+</div>
 
   <div class="row fileupload-buttonbar">
       <div class="span7"> 
         <span class="btn btn-success fileinput-button">
           <i class="glyphicon glyphicon-plus glyphicon-white"></i>
-          <input type="file" class="form-control"  name="product[uploads_attributes][][upload]" multiple>Select
+          <input type="file" class="form-control"  name="product[uploads_attributes][upload]" multiple>Select
         </span>
         <button type="submit" class="btn btn-primary start" id="startbutton">
               <i class="glyphicon glyphicon-upload glyphicon-white"></i>
@@ -43,7 +163,6 @@
     </div>
     <table class="table table-striped"><tbody class="files" data-toggle="modal-gallery" data-target="#modal-gallery"></tbody>
     </table>
-
 
 </div>
  

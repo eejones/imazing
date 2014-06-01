@@ -9,9 +9,9 @@
           %li= msg
   .input-group
     .field
-      = f.label :model
+      = f.label :condition
       %br/
-      = f.text_field :model
+      = f.text_field :condition
     .field
       = f.label :price
       %br/
