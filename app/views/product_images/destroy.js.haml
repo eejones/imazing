@@ -1,4 +1,0 @@
-/* Replace the count of videos */
-$("#product_images_count").html("#{pluralize(@product.product_images.count, 'Video')}");
-/* Use fading when removing a video */
-$('#product_image_#{@product_image.id}').fadeOut('Image removed');

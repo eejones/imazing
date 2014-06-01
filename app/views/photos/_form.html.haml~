@@ -1,5 +1,0 @@
-#newcreated
-  = form_for([@product, @product.photos.build],:remote=>true) do |builder|
-    = builder.file_field :image
-    //= builder.submit
-    %input{name: "authenticity_token", type: "hidden", value: form_authenticity_token}/

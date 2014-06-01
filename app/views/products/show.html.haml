@@ -26,29 +26,17 @@
   = @product.modality.name
 %p
   %b All Photos:
-  - if @product.try(:product_images)
-    #photos_showing
-      %ul= render :partial => @product.product_images, :locals => { :list => true }
-%p
-  %b NEW PHOTO
-  #newcreated
-    = link_to 'Add Photo', new_product_image_path
-    //= render "product_images/form" 
+  = @product.uploads.each do |p|
+    = image_tag p.upload.url(:small)
 %p
   %b PHOTO COUNT
-  = @product.product_images.count
-%p
-  %b List Photos
-  = @product.product_images.each do |p|
-    = p.id
+  = @product.uploads.count
+
 %p
   %b Primary Photo:
   //- if @product.try(:primary_photo) && @product.primary_photo.image_stored?
   //  = image_tag @product.primary_photo.image.thumb('120x90').url
   //= @product.primary_photo
-%p
-  = @product.uploads.each do |p|
-    = image_tag p.upload.url(:small)
 %p
   %b Serial:
   = @product.serial
