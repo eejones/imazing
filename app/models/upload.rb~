@@ -1,6 +1,11 @@
 class Upload < ActiveRecord::Base
   has_attached_file :upload
 
+  belongs_to :product
+
+  validates :product_id, :presence => true
+
+
   include Rails.application.routes.url_helpers
 
   def to_jq_upload

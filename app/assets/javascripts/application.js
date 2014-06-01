@@ -13,8 +13,8 @@
 //= require jquery
 //= require jquery.ui.all
 //= require jquery_ujs
-//= require jquery-fileupload
 //= require jquery.remotipart
+//= require jquery-fileupload
 //= require jquery.turbolinks
 //= require turbolinks
 //= require_tree .

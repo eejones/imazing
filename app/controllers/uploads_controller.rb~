@@ -84,4 +84,11 @@ class UploadsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  private
+    def product_params
+      params.require(:upload).permit(:upload)
+   end
+
+
 end

@@ -106,7 +106,7 @@ gem "jquery-fileupload-rails"
 gem "paperclip", "~> 4.1"
 
 #using carrierwave instead of paperclip or dragonfly to use with jquery-file-upload
-#gem "carrierwave"
+gem "carrierwave"
 
 #use angularjs
 #gem 'angularjs-rails'

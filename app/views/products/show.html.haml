@@ -47,6 +47,9 @@
   //  = image_tag @product.primary_photo.image.thumb('120x90').url
   //= @product.primary_photo
 %p
+  = @product.uploads.each do |p|
+    = image_tag p.upload.url(:small)
+%p
   %b Serial:
   = @product.serial
 %p

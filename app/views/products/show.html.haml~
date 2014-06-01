@@ -32,7 +32,7 @@
 %p
   %b NEW PHOTO
   #newcreated
-    = link_to "Add Photo", new_product_image_path
+    = link_to 'Add Photo', new_product_image_path
     //= render "product_images/form" 
 %p
   %b PHOTO COUNT
@@ -46,6 +46,9 @@
   //- if @product.try(:primary_photo) && @product.primary_photo.image_stored?
   //  = image_tag @product.primary_photo.image.thumb('120x90').url
   //= @product.primary_photo
+%p
+  - @product.uploads.each do |p|
+    = image_tag p.upload.url(:small)
 %p
   %b Serial:
   = @product.serial
