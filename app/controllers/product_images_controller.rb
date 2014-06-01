@@ -53,7 +53,6 @@ class ProductImagesController < ApplicationController
       end
     end
 =end
-  end
 
   # PATCH/PUT /product_images/1
   # PATCH/PUT /product_images/1.json
@@ -72,7 +71,7 @@ class ProductImagesController < ApplicationController
   # DELETE /product_images/1
   # DELETE /product_images/1.json
   def destroy
-    @product_image = Product_image.find(params:id])
+    @product_image = Product_image.find(params[:id])
     @product_image.destroy
     render :json => true
   end

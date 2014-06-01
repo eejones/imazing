@@ -12,6 +12,7 @@ class Product < ActiveRecord::Base
 
   belongs_to :overallcategory
 
+  mount_uploader :image, ImageUploader
 
   has_many :product_images, :class_name => "ProductImage"
   
@@ -39,6 +40,18 @@ def self.search(search)
     scoped
   end
 end
+
+  def to_jq_upload
+    {
+      "name" => read_attribute(:image),
+      "size" => image.size,
+      "correct_url" => image.attributes,
+      "url" => image.url,
+      "thumbnail_url" => image.thumb.url,
+      "delete_url" => product_image_path(:id => id),
+      "delete_type" => "DELETE" 
+    }
+  end
 
 #  after_validation :geocode
 

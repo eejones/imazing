@@ -17,6 +17,7 @@ class ProductImage < ActiveRecord::Base
       "name" => read_attribute(:image),
       "size" => image.size,
       "url" => image.url,
+      "correct_url" => image.attributes,
       "thumbnail_url" => image.thumb.url,
       "delete_url" => product_image_path(:id => id),
       "delete_type" => "DELETE" 

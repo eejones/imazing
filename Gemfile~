@@ -108,6 +108,9 @@ gem "paperclip", "~> 4.1"
 #using carrierwave instead of paperclip or dragonfly to use with jquery-file-upload
 gem "carrierwave"
 
+#use angularjs
+gem 'angularjs-rails'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
 
