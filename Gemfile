@@ -4,8 +4,8 @@ source 'https://rubygems.org'
 gem 'rails', '4.0.2'
 
 #for image upload stuff
-gem 'anjlab-bootstrap-rails', :require => 'bootstrap-rails',
-                              :github => 'anjlab/bootstrap-rails'
+#gem 'anjlab-bootstrap-rails', :require => 'bootstrap-rails',
+#                              :github => 'anjlab/bootstrap-rails'
 
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'

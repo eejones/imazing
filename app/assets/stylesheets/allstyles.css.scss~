@@ -1,5 +1,7 @@
 @import "bootstrap";
 
+/* include this at the top if I remove application.css: "*= require jquery.fileupload-ui" */
+
 $blueMediumLight: #3075BF;
 $bluedark: #133152;
 $white: #FFFFFF;
@@ -93,8 +95,8 @@ header{
   color: $burntorangebg;
   position: fixed-top;
   width: 1200px;
-  margin-left: auto;
-  margin-right:auto;
+  margin-left: 0;
+  margin-right:0;
   height: 127px;
   background-image: url("ebay.png");
   background-size: 100%;

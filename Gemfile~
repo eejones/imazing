@@ -107,7 +107,7 @@ gem 'remotipart', '~> 1.2'
 gem "jquery-fileupload-rails"
 
 #Using paperclip to upload files now
-gem "paperclip", "~> 4.1"
+gem "paperclip", "~> 3.0"
 
 #using carrierwave instead of paperclip or dragonfly to use with jquery-file-upload
 gem "carrierwave"
