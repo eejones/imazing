@@ -25,9 +25,12 @@
   %b Modality:
   = @product.modality.name
 %p
+  %b PHOTO COUNT
+  = @product.uploads.count
   %b All Photos:
-  //= @product.uploads.each do |p|
-  //  = image_tag p.upload.url(:small)
+  = @product.uploads.each do |p|
+    = image_tag p.upload.url(:small)
+  %b later try with pictures below
 #pictures
   - for picture in @product.pictures
     .picture

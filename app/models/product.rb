@@ -21,6 +21,7 @@ class Product < ActiveRecord::Base
   has_one :primary_photo, :class_name=> "ProductImage"
 
   has_many :uploads
+
   accepts_nested_attributes_for :uploads, :allow_destroy => true
 
   accepts_nested_attributes_for :product_images, :allow_destroy => true

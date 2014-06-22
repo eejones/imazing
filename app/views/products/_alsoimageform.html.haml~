@@ -1,0 +1,237 @@
+= form_for @product,  :html => { :multipart => true, :id => "fileupload"  } do |f|
+  - if @product.errors.any?
+    #error_explanation
+      %h2
+        = pluralize(@product.errors.count, "error")
+        prohibited this product from being saved:
+      %ul
+        - @product.errors.full_messages.each do |msg|
+          %li= msg
+  .input-group
+    #overallcategorycreate
+      = f.label :overallcategory
+      = f.collection_select(:overallcategory_id, Overallcategory.all, :id, :name, options = {:include_blank => true})
+    #modalitycreate.modalitycreate
+      = f.label :modality
+      = f.collection_select(:modality_id, Modality.all, :id, :name, options = {:include_blank => true}, html_options = { data: {dynamic_selectable_url: dynamic_select_modtypes_path(':modality_id'), dynamic_selectable_target: '#product_modtype_id'}})
+      /
+        \/ :include_blank can also be 'true' to just have a blank field instead of a string
+      /
+        \/ :onchange => ("$('#modtypecreate').submit()"))
+    #modtypecreate.modtypecreate
+      = f.label :modtype
+      = f.collection_select(:modtype_id, @product.modality.try(:modtypes) || [], :id, :name, options = {:include_blank => true}, html_options = { data: {dynamic_selectable_url: dynamic_select_manufacturers_path(':modtype_id'), dynamic_selectable_target: '#product_manufacturer_id'}})
+    #manufacturercreate.manufacturercreate
+      = f.label :manufacturer
+      = f.collection_select(:manufacturer_id, @product.modtype.try(:manufacturers) || [], :id, :name, :include_blank => true)
+      .field
+      = f.label :serial
+      = f.text_field :serial
+    .field
+      = f.label :condition
+      = f.text_field :condition
+    .field
+      = f.label :country
+      = f.country_code_select(:country, [[ 'United States', 'United States' ], [ 'Canada', 'Canada' ]])
+    .field
+      = f.label :region
+      = f.text_field :region
+    .field
+      = f.label :prefremovalmethod
+      = f.text_field :prefremovalmethod
+    .field
+      = f.label :price
+      = f.text_field :price
+    .field
+      = f.label :warranty
+      = f.text_field :warranty
+    .field
+      = f.label :listedon
+      = f.date_select :listedon, {:start_year => Time.now.year, :end_year => Time.now.year + 1}, :selected => Time.now
+    .field
+      = f.label :listeduntil
+      = f.date_select :listeduntil, {:start_year => Time.now.year, :end_year => Time.now.year + 1}
+    .field
+      = f.label :autorenew
+      = f.check_box :autorenew
+    .field
+      = f.label :availability
+      = f.text_field :availability
+    .field
+      = f.label :availabilitydate
+      = f.date_select :availabilitydate, {:start_year => Time.now.year, :end_year => Time.now.year + 1}
+    .field
+      = f.label :year
+      /
+        \/commenting out date field since it is giving an error of "undefined method 'change' for 2006:Fixnum" I can't find where this is being called(outside of javascript, but nothing should be looking at this field there...)
+      = f.date_select :year, {:start_year => Time.now.year - 40, :end_year => Time.now.year, :discard_day => true, :discard_month => true}, :selected => @product.year
+    .usertype
+      %h2 What type of User are you?
+      %ul
+        %li
+          Dealer/Broker
+          = f.check_box :dealertype
+        %li.divider
+        %li
+          Hospital
+          = f.check_box :hospitaltype
+        %li.divider
+        %li
+          Orthopedic
+          = f.check_box :orthopedictype
+        %li.divider
+        %li
+          Imaging Center
+          = f.check_box :imagingcentertype
+        %li.divider
+        %li
+          Dr Office
+          = f.check_box :drofficetype
+        %li.divider
+        %li
+          Urgent Care
+          = f.check_box :urgenttype
+        %li.divider
+        %li
+          Pain Management
+          = f.check_box :painmanagementtype
+        %li.divider
+        %li
+          Vertinary
+          = f.check_box :veterinarytype
+        %li.divider
+        %li
+          Chiropractic
+          = f.check_box :chiropractictype
+        %li.divider
+        %li
+          Podiatry
+          = f.check_box :podiatrytype
+        %li.divider
+        %li
+          Dental
+          = f.check_box :dentaltype
+    .row.fileupload-buttonbar
+      .span7
+        %span.btn.btn-success.fileinput-button
+          %i.glyphicon.glyphicon-plus.glyphicon-white
+          = succeed "Upload" do
+            %input.form-control{multiple: "multiple", name: "product[uploads_attributes][][upload]", type: "file"}/
+        %br/
+        %table.table.table-striped
+          %tbody.files{"data-target" => "#modal-gallery", "data-toggle" => "modal-gallery"}
+        %button#startbutton.btn.btn-primary.start{type: "submit"}
+          %i.glyphicon.glyphicon-upload.glyphicon-white
+          %span Add Product
+  :javascript
+    var fileUploadErrors = {
+    maxFileSize: 'File is too big',
+    minFileSize: 'File is too small',
+    acceptFileTypes: 'Filetype not allowed',
+    maxNumberOfFiles: 'Max number of files exceeded',
+    uploadedBytes: 'Uploaded bytes exceed file size',
+    emptyResult: 'Empty file upload result'
+    };
+    // The template to display files available for upload
+    %script#template-upload{type: "text/x-tmpl"}
+      :cdata
+        {% for (var i=0, file; file=o.files[i]; i++) { %}
+        <tr class="template-upload fade">
+        <td class="preview"><span class="fade"></span></td>
+        <td class="name"><span>{%=file.name%}</span></td>
+        <td class="size"><span>{%=o.formatFileSize(file.size)%}</span></td>
+        {% if (file.error) { %}
+        <td class="error" colspan="2"><span class="label label-important">{%=locale.fileupload.error%}</span> {%=locale.fileupload.errors[file.error] || file.error%}</td>
+        {% } else if (o.files.valid && !i) { %}
+        <td>
+        <div class="progress progress-success progress-striped active"><div class="bar progress-bar" style="width:0%;"></div></div>
+        </td>
+        <td class="start" style="display:none">{% if (!o.options.autoUpload) { %}
+        <button class="btn btn-primary">
+        <i class="icon-upload icon-white"></i>
+        <span>{%=locale.fileupload.start%}</span>
+        </button>
+        {% } %}</td>
+        {% } else { %}
+        <td colspan="2"></td>
+        {% } %}
+        <td class="cancel">{% if (!i) { %}
+        <button class="btn btn-warning" onclick="minus()">
+        <i class="icon-ban-circle icon-white"></i>
+        <span>{%=locale.fileupload.cancel%}</span>
+        </button>
+        {% } %}</td>
+        </tr>
+        {% } %}
+      // The template to display files available for download
+    %script#template-download{type: "text/x-tmpl"}
+      :cdata
+    %script{charset: "utf-8", type: "text/javascript"}
+      :cdata
+        var num_added = 0;
+        var added = 0;
+        var all_data = {};
+        function minus() {
+        num_added--;
+        };
+        function submit() {
+        if (num_added == 0) {
+        document.forms["fileupload"].submit();
+        }
+        
+        };
+        $(function () {
+        
+        $('#startbutton').click(function() {
+        if (num_added == 0) {
+        document.forms["fileupload"].submit();
+        }
+        
+        });
+        
+        // Initialize the jQuery File Upload widget:
+        $('#fileupload').fileupload({
+        complete: function (e, data) {
+        window.location = "#{root_url}";
+        },
+        singleFileUploads: false
+        })  .bind('fileuploadadd', function (e, data) {num_added++;})
+        \.bind('fileuploadsubmit', function (e, data) {
+        if(added < num_added)
+        {
+        if (added == 0)
+        all_data = data;
+        else
+        {
+        $.each(data['files'], function(i, file){
+        all_data['files'].push(file);
+        });
+        $.each(data['context'], function(i, context){
+        all_data['context'].push(context);
+        });
+        }
+        added++;
+        if (added == num_added)
+        {
+        added++;
+        all_data.submit();
+        }
+        return false;
+        }
+        })
+        \.bind('fileuploadsend', function (e, data) {num_added = 0; added = 0;});
+        $.getJSON($('#fileupload').prop('action'), function (files) {
+        var fu = $('#fileupload').data('blueimpFileupload'),
+        template;
+        fu._adjustMaxNumberOfFiles(-files.length);
+        console.log(files);
+        template = fu._renderDownload(files)
+        \.appendTo($('#fileupload .files'));
+        \// Force reflow:
+        fu._reflow = fu._transition && template.length &&
+        template[0].offsetWidth;
+        template.addClass('in');
+        $('#loading').remove();
+        });
+        
+        });
