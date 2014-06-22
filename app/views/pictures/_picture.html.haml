@@ -1,0 +1,6 @@
+.picture
+  = link_to image_tag(picture.image_url(:thumb)), picture if picture.image?
+  = picture.name
+  = link_to "edit", edit_picture_path(picture)
+  |
+  =link_to "remove", picture, :confirm => 'Are you sure?', :method => :delete

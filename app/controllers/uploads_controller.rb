@@ -43,7 +43,6 @@ class UploadsController < ApplicationController
     respond_to do |format|
       if @upload.update(upload_params)
         format.html { redirect_to @upload, notice: 'Upload was successfully updated.' }
-        format.json { head :no_content }
       else
         format.html { render action: 'edit' }
         format.json { render json: @upload.errors, status: :unprocessable_entity }

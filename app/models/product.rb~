@@ -13,6 +13,7 @@ class Product < ActiveRecord::Base
 
   belongs_to :overallcategory
 
+  has_many :pictures
 
 
   has_many :product_images, :class_name => "ProductImage"
@@ -21,6 +22,7 @@ class Product < ActiveRecord::Base
 
   has_many :uploads
   accepts_nested_attributes_for :uploads, :allow_destroy => true
+
   accepts_nested_attributes_for :product_images, :allow_destroy => true
 
   validates_presence_of :modality, :modtype, :manufacturer, :overallcategory, :year

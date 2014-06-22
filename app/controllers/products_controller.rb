@@ -94,7 +94,6 @@ class ProductsController < ApplicationController
         @product.manufacturer_name = @product.manufacturer.name
         @product.overallcategory_name = @product.overallcategory.name
         format.html { redirect_to @product, notice: 'Product was successfully updated.' }
-        format.json { head :no_content }
       else
         format.html { render action: 'edit' }
         format.json { render json: @product.errors, status: :unprocessable_entity }

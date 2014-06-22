@@ -26,14 +26,37 @@
   = @product.modality.name
 %p
   %b All Photos:
-  = @product.uploads.each do |p|
-    = image_tag p.upload.url(:small)
+  //= @product.uploads.each do |p|
+  //  = image_tag p.upload.url(:small)
+#pictures
+  - for picture in @product.pictures
+    .picture
+      = image_tag picture.image_url(:thumb) if picture.image?
+      = picture.name
+      %br
+      = link_to "edit", edit_picture_path(picture)
+      |
+      = link_to "remove", picture, :confirm => 'Are you sure?', :method => :delete
+%p
+  //= link_to "Add a Painting", new_picture_path(:product_id => @product)
 %p
   %b PHOTO COUNT
-  = @product.uploads.count
-
+  = @product.pictures.count
 %p
-  %b Primary Photo:
+  %b Add Photo:
+#pictures
+  = render @product.pictures
+.clear
+= form_for Picture.new do |paint|
+  = paint.label :image, "Upload pictures:"
+  = paint.file_field :image, multiple: true, name: "picture[image]"
+  %script#template-upload{type: "text/x-tmpl"}
+    :cdata
+      <div class="upload">
+      {%=o.name%}
+      <div class="progress"><div class="bar" style="width: 0%"></div></div>
+      </div>
+  //= render "pictures/form"
   //- if @product.try(:primary_photo) && @product.primary_photo.image_stored?
   //  = image_tag @product.primary_photo.image.thumb('120x90').url
   //= @product.primary_photo

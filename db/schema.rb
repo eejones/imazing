@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140601071131) do
+ActiveRecord::Schema.define(version: 20140621233805) do
 
   create_table "manufacturers", force: true do |t|
     t.string   "name"
@@ -71,6 +71,17 @@ ActiveRecord::Schema.define(version: 20140601071131) do
   end
 
   add_index "overallcategories", ["product_id"], name: "index_overallcategories_on_product_id"
+
+  create_table "pictures", force: true do |t|
+    t.integer  "product_id"
+    t.boolean  "primaryimage"
+    t.string   "name"
+    t.string   "image"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "pictures", ["product_id"], name: "index_pictures_on_product_id"
 
   create_table "products", force: true do |t|
     t.string   "serial"

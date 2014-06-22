@@ -13,6 +13,7 @@ class Product < ActiveRecord::Base
 
   belongs_to :overallcategory
 
+  has_many :pictures
 
 
   has_many :product_images, :class_name => "ProductImage"

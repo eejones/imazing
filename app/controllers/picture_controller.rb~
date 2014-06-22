@@ -1,0 +1,11 @@
+class PicturesController < ApplicationController
+
+
+  private
+
+    def picture_params
+    params.require(:picture).permit(:product_id, :primary, :primaryimage, :image, :name)
+  end
+
+
+end

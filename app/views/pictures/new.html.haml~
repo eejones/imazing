@@ -1,0 +1,3 @@
+- title New Picture
+= render 'form'
+%p= link_to "Back to Product", @picture.product

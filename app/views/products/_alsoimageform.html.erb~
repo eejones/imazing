@@ -1,7 +1,3 @@
-
-
-
-
 <%= form_for @product,  :html => { :multipart => true, :id => "fileupload"  } do |f| %>
   <% if @product.errors.any? %>
     <div id="error_explanation">
@@ -147,22 +143,22 @@
     </li>
   </ul>
 </div>
-
   <div class="row fileupload-buttonbar">
       <div class="span7"> 
         <span class="btn btn-success fileinput-button">
           <i class="glyphicon glyphicon-plus glyphicon-white"></i>
-          <input type="file" class="form-control"  name="product[uploads_attributes][upload]" multiple>Select
+          <input type="file" class="form-control"  name="product[uploads_attributes][][upload]" multiple>Upload Images
         </span>
+<br></br>
+    <table class="table table-striped"><tbody class="files" data-toggle="modal-gallery" data-target="#modal-gallery"></tbody>
+    </table>
         <button type="submit" class="btn btn-primary start" id="startbutton">
               <i class="glyphicon glyphicon-upload glyphicon-white"></i>
-              <span>OK</span>
+              <span>Add Product</span>
         </button>
       </div>
       
     </div>
-    <table class="table table-striped"><tbody class="files" data-toggle="modal-gallery" data-target="#modal-gallery"></tbody>
-    </table>
 
 </div>
  
