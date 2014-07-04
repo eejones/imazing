@@ -25,7 +25,7 @@ gem 'coffee-rails', '~> 4.0.0'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 
-#add jquery-ui since it is no longer included in jquery-rails
+#using to have jquery.ui.all installed
 gem 'jquery-ui-rails'
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
@@ -63,6 +63,14 @@ gem 'therubyracer'
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
+end
+
+gem "rspec-rails", :group => [:test, :development]
+
+group :test do
+  gem "factory_girl_rails"
+  gem "capybara"
+  gem "guard-rspec"
 end
 
 #using geocoder for location
@@ -105,6 +113,7 @@ gem 'remotipart', '~> 1.2'
 
 #using jquery file upload to allow for previewing and multiple image uploading with carrierwave
 gem "jquery-fileupload-rails"
+
 
 #Using paperclip to upload files now
 gem "paperclip", "~> 3.0"
