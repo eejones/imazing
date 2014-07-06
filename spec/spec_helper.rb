@@ -18,13 +18,43 @@
 ENV["RAILS_ENV"] ||= 'test'
 require File.expand_path("../../config/environment",__FILE__)
 require 'rspec/rails'
+require 'capybara/rspec'
 
 Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
 
 RSpec.configure do |config|
 
-config
+config.include Devise::TestHelpers, :type => :controller
 
+config.include Capybara::DSL, :type => :request
+#Devise::TestHelpers should only be in controller specs - they need ot be added there directly
+#config.include Devise::TestHelpers
+#config.include Warden::Test::Helpers
+#Warden.test_mode!
+
+config.use_transactional_fixtures = false
+
+#  config.before(:suite) do
+#    DatabaseCleaner.strategy = :truncation
+#  end
+
+#  config.before(:each) do
+#    DatabaseCleaner.strategy = :truncation
+#    DatabaseCleaner.start
+#  end
+
+  config.before(:each) do
+    if Capybara.current_driver == :rack_test
+      DatabaseCleaner.strategy = :transaction
+    else
+      DatabaseCleaner.strategy = :truncation
+    end
+    DatabaseCleaner.start
+  end
+
+  config.after(:each) do
+    DatabaseCleaner.clean
+  end
 # The settings below are suggested to provide a good initial experience
 # with RSpec, but feel free to customize to your heart's content.
 =begin

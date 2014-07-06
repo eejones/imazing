@@ -1,0 +1,9 @@
+namespace :db do
+#run rake db:clear_particular_model to run
+  desc "Sequentially clears out the models I don't care about"
+  task :clear_particular_model => :environment do
+    puts "Clearing out the fake products"
+    Product.destroy_all
+    puts "Finished."
+  end
+end

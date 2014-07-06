@@ -5,14 +5,13 @@ class User < ActiveRecord::Base
 # for confirmable: https://github.com/plataformatec/devise/wiki/How-To:-Add-:confirmable-to-Users
 # i can also allow unconfirmed access for a grace period or something - instructions on the link above
 #to add confirmable, just add it below
-  devise :database_authenticatable, :registerable, :confirmable,
+  devise :database_authenticatable, :registerable, 
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :products
   has_many :transactions
   has_many :messages
   
-
   has_many :touser_id, class_name: 'Messages', :foreign_key => :touser_id
   has_many :fromuser_id, class_name: 'Messages', :foreign_key => :fromuser_id
 

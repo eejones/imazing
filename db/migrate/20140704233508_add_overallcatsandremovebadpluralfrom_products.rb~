@@ -1,0 +1,5 @@
+class AddOverallcatsandremovebadpluralfromProducts < ActiveRecord::Migration
+  def change
+    remove_reference :products, :overallcategories
+  end
+end

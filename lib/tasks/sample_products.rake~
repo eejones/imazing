@@ -8,19 +8,19 @@ namespace :db do
     [Product].each(&:delete_all)
     
     1000.times do |t|
-      @modality = Modality.first(:offset => rand(1..19))
+      @modality = Modality.find_by(:offset => rand(1..19))
       mymods = @modality.modtypes.count
-      @modtype = @modality.modtypes.first(:offset => rand(mymods))
+      @modtype = @modality.modtypes.find_by(:offset => rand(mymods))
       mymanufs = @modtype.manufacturers.count
-      @manufacturer = @modtype.manufacturers.first(:offset => rand(mymanufs))
+#replaced first with find_by for deprecation warnings for line 16, 11, and 13(current lines)
+      @manufacturer = @modtype.manufacturers.find_by(:offset => rand(mymanufs))
       @overallcategory = Overallcategory.find_by_id(rand(1..2))
       Product.populate 1..2 do |product|
         product.serial = rand(1000000) 
         product.condition = "Good" 
         product.country = "United States" 
         product.price = rand(400000) 
-        product.user_id = 1
-        product.year = rand(1990..2014) 
+        product.user_id = 2
         product.dealertype = rand(1..2) 
         product.hospitaltype = rand(1..2) 
         product.orthopedictype = rand(1..2) 

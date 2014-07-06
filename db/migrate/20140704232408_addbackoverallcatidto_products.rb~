@@ -1,0 +1,5 @@
+class AddbackoverallcatidtoProducts < ActiveRecord::Migration
+  def change
+    add_reference :products, :overallcategory
+  end
+end

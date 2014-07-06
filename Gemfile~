@@ -64,15 +64,21 @@ group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
 end
-=begin
+
 gem "rspec-rails", :group => [:test, :development]
 
-group :test do
+group :development, :test do
   gem "factory_girl_rails"
   gem "capybara"
   gem "guard-rspec"
+  gem 'launchy'
+  gem 'selenium-webdriver'
+  #jasmine for testing javascript
+  #gem 'jasminerice'
+  #gem 'guard-jasmine'
 end
-=end
+
+
 #using geocoder for location
 gem 'geocoder'
 

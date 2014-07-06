@@ -67,11 +67,18 @@ end
 
 gem "rspec-rails", :group => [:test, :development]
 
-group :test do
+group :development, :test do
   gem "factory_girl_rails"
   gem "capybara"
   gem "guard-rspec"
+  gem 'launchy'
+  gem 'selenium-webdriver'
+  gem 'database_cleaner'
+  #jasmine for testing javascript
+  #gem 'jasminerice'
+  #gem 'guard-jasmine'
 end
+
 
 #using geocoder for location
 gem 'geocoder'

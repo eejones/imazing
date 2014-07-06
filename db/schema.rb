@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140621233805) do
+ActiveRecord::Schema.define(version: 20140704233508) do
 
   create_table "manufacturers", force: true do |t|
     t.string   "name"
@@ -117,13 +117,14 @@ ActiveRecord::Schema.define(version: 20140621233805) do
     t.integer  "manufacturer_id"
     t.integer  "modtype_id"
     t.integer  "modality_id"
-    t.integer  "overallcategory_id"
+    t.string   "keywords"
     t.string   "transaction_name"
     t.string   "user_name"
     t.string   "modality_name"
     t.string   "modtype_name"
     t.string   "manufacturer_name"
     t.string   "overallcategory_name"
+    t.integer  "overallcategory_id"
   end
 
   add_index "products", ["manufacturer_id"], name: "index_products_on_manufacturer_id"
@@ -133,7 +134,6 @@ ActiveRecord::Schema.define(version: 20140621233805) do
   add_index "products", ["modality_name"], name: "index_products_on_modality_name"
   add_index "products", ["modtype_id"], name: "index_products_on_modtype_id"
   add_index "products", ["modtype_name"], name: "index_products_on_modtype_name"
-  add_index "products", ["overallcategory_id"], name: "index_products_on_overallcategory_id"
   add_index "products", ["overallcategory_name"], name: "index_products_on_overallcategory_name"
   add_index "products", ["transaction_id"], name: "index_products_on_transaction_id"
   add_index "products", ["transaction_name"], name: "index_products_on_transaction_name"

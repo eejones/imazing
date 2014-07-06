@@ -20,7 +20,6 @@ namespace :db do
         product.country = "United States" 
         product.price = rand(400000) 
         product.user_id = 2
-        product.year = rand(1990..2014) 
         product.dealertype = rand(1..2) 
         product.hospitaltype = rand(1..2) 
         product.orthopedictype = rand(1..2) 

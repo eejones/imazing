@@ -1,0 +1,12 @@
+FactoryGirl.define do
+  factory :testuser do
+    email 'notest@example.com'
+    password 'password'
+    username 'mycoreuser'
+    fname 'Roberto'
+    lname 'Clemente'
+    company 'Pirates'
+    officephone '7023848984'
+    mobilephone '7024849327'
+  end
+end
